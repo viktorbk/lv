@@ -44,25 +44,25 @@
         items: dataItems,
         height: document.documentElement.clientHeight - 1,
         itemTemplate: function (itemData, itemIndex, itemElement) {
-            var content;
-            switch (itemData.title) {
-                case "Persónuupplýsingar":
-                    content = InitCarData(itemData.data);
-                    break;
-                case "Börn":
-                    content = InitEmergencyData(itemData.data);
-                    break;
-                case "Peningar":
-                    content = InitAddressData(itemData.data);
+            var content = '';
+            switch (itemIndex) {
+                case 0:
+                    content = initPersonuuppl(itemElement);
                     break;
             }
             itemElement.append(content);
+
         }
     });
 
-    function InitEmergencyData(data) {
-
-        return $("#secondTab");
+    function initPersonuuppl(data) {
+        $("#kyn").dxRadioGroup({
+            items: ['Karl', 'Kona'],
+            value: 'Karl',
+            layout: "horizontal"
+        });
+        var svar = $("#firstTab").html();
+        return svar;
     }
 
     function InitAddressData(data) {
