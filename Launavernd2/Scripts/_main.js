@@ -23,7 +23,37 @@ function initPersonuuppl(itemElement) {
 
     $("#kyn").dxRadioGroup({
         items: ['Karl', 'Kona'],
+        width: "300px",
         value: 'Karl',
+        layout: "horizontal"
+    });
+    $("#aldur").dxSlider({
+        min: 18,
+        max: 70,
+        step: 1,
+        width: "300px",
+        hint: "Dragðu stikuna á réttan aldur.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                return value + " ára"
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                return value + " ára"
+            }
+        },
+        onValueChanged: function (e) {
+            $("#aldur-display").text("Aldur: " + e.value);
+        }
+    });
+    $("#reykir").dxRadioGroup({
+        items: ['Já', 'Nei'],
+        width: "300px",
+        value: 'Já',
         layout: "horizontal"
     });
 }
