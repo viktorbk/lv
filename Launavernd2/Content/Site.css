@@ -25,14 +25,20 @@ textarea {
 }
 
 .tafla1 {
-    width: 100%;
-}
-#kyn {
-    border: 1px solid silver;
+    margin-top: 25px;
+    width: 750px;
+    border: 1px solid black;
 }
 
-#aldur-grp {
-    width: 300px;
-    border: 1px solid silver;
-        float: right;
+.dx-overlay-content {
+    z-index: 1  ;
+}
+
+.grp {
+    margin: 10px;
+}
+
+.grp > p {
+    margin-left: 7px;
+    margin-bottom: 5px;
 }

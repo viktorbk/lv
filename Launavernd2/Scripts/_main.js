@@ -13,6 +13,9 @@ lvApp.controller("defaultCtrl", function ($scope) {
             case 0:
                 initPersonuuppl(itemElement);
                 break;
+            case 1:
+                initBorn(itemElement);
+                break;
             }
         }
     }
@@ -31,23 +34,31 @@ function initPersonuuppl(itemElement) {
         min: 18,
         max: 70,
         step: 1,
+        value: 18,
         width: 300,
         hint: "Dragðu stikuna á réttan aldur.",
         tooltip: {
             enabled: true,
             format: function (value) {
-                return value + " ára";
+                if (value < 70) {
+                    return value + " ára";
+                }
+                else {
+                    return value + " ára eða eldri"
+                }
             }
         },
         label: {
             visible: true,
             position: 'bottom',
             format: function (value) {
-                return value + " ára";
+                if (value < 70) {
+                    return value + " ára";
+                }
+                else {
+                    return value + " ára eða eldri"
+                }
             }
-        },
-        onValueChanged: function (e) {
-            $("#aldur-display").text("Aldur: " + e.value);
         }
     });
     $("#reykir").dxRadioGroup({
@@ -56,8 +67,121 @@ function initPersonuuppl(itemElement) {
         value: 'Já',
         layout: "horizontal"
     });
+    $("#maki").dxRadioGroup({
+        items: ['Já', 'Nei'],
+        width: "300px",
+        value: 'Nei',
+        layout: "horizontal"
+    });
 }
 
+function initBorn(itemElement) {
+    itemElement.append($("#secondTab").html());
+
+    $("#fjoldi-barna").dxSlider({
+        min: 0,
+        max: 10,
+        step: 1,
+        value: 0,
+        width: 300,
+        hint: "Dragðu stikuna á réttan fjölda barna.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 0) {
+                    return "Engin börn";
+                }
+                else if (value < 10) {
+                    return value + " börn";
+                }
+                else {
+                    return value + " eða fleiri börn"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value == 0) {
+                    return "Engin";
+                }
+                else if (value < 10) {
+                    return value;
+                }
+                else {
+                    return value + "+"
+                }
+            }
+        },
+        onValueChanged: function (e) {
+            if (e.value != 0) {
+                $("#fjoldi-barna-heima-grp").fadeIn("slow");
+                var currvalue = $("#fjoldi-barna-heima").dxSlider("option", "value");
+                var instance = $("#fjoldi-barna-heima").dxSlider("instance");
+                instance.option("tooltip", {
+                    enabled: true,
+                    format: function (value) {
+                        if (value == 0) {
+                            return "Engin börn";
+                        }
+                        else if (value == 10) {
+                            return value + " eða fleiri börn"
+                        }
+                        else if (value <= e.value) {
+                            return value + " börn";
+                        }
+                    }
+                });
+                instance.option("max", e.value);
+                if (currvalue > e.value) {
+                    $("#fjoldi-barna-heima").dxSlider("instance").option("value", e.value);
+                }
+            }
+            else {
+                $("#fjoldi-barna-heima-grp").fadeOut("slow");
+            }
+        }
+    });
+    $("#fjoldi-barna-heima").dxSlider({
+        min: 0,
+        max: 10,
+        step: 1,
+        value: 0,
+        width: 300,
+        hint: "Dragðu stikuna á réttan fjölda barna.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 0) {
+                    return "Engin börn";
+                }
+                else if (value < 10) {
+                    return value + " börn";
+                }
+                else {
+                    return value + " eða fleiri börn"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value == 0) {
+                    return "Engin";
+                }
+                else if (value < 10) {
+                    return value;
+                }
+                else {
+                    return value + "+"
+                }
+            }
+        }
+    });
+    $("#fjoldi-barna-heima-grp").hide();
+}
 var dataItems = [
 {
     html: getTitle('users', 'Persónuupplýsingar'),
