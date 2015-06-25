@@ -47,22 +47,22 @@
             var content = '';
             switch (itemIndex) {
                 case 0:
-                    content = initPersonuuppl(itemElement);
+                    initPersonuuppl(itemElement);
                     break;
             }
-            itemElement.append(content);
+            
 
         }
     });
 
-    function initPersonuuppl(data) {
+    function initPersonuuppl(itemElement) {
+        var svar = $("#firstTab").html();
+        itemElement.append(svar);
         $("#kyn").dxRadioGroup({
             items: ['Karl', 'Kona'],
             value: 'Karl',
             layout: "horizontal"
         });
-        var svar = $("#firstTab").html();
-        return svar;
     }
 
     function InitAddressData(data) {
