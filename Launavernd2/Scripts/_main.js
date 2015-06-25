@@ -1,6 +1,6 @@
 ﻿var lvApp = angular.module('lvApp', ['dx']);
 lvApp.controller("defaultCtrl", function ($scope) {
-
+    
     $scope.tabPanel = {
         dataSource: dataItems,
         swipeEnabled: true,
@@ -16,10 +16,18 @@ lvApp.controller("defaultCtrl", function ($scope) {
             case 1:
                 initBorn(itemElement);
                 break;
+            
+            case 2:
+                initPeningar(itemElement);
+                break;
             }
         }
     }
 });
+
+function numberWithDots(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 function initPersonuuppl(itemElement) {
     itemElement.append($("#firstTab").html());
@@ -56,7 +64,7 @@ function initPersonuuppl(itemElement) {
                     return value + " ára";
                 }
                 else {
-                    return value + " ára eða eldri"
+                    return value + "+ ára";
                 }
             }
         }
@@ -150,20 +158,6 @@ function initBorn(itemElement) {
         value: 0,
         width: 300,
         hint: "Dragðu stikuna á réttan fjölda barna.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 0) {
-                    return "Engin börn";
-                }
-                else if (value < 10) {
-                    return value + " börn";
-                }
-                else {
-                    return value + " eða fleiri börn"
-                }
-            }
-        },
         label: {
             visible: true,
             position: 'bottom',
@@ -181,6 +175,97 @@ function initBorn(itemElement) {
         }
     });
     $("#fjoldi-barna-heima-grp").hide();
+}
+
+function initPeningar(itemElement) {
+    itemElement.append($("#thirdTab").html());
+    $("#husnaedi").dxRadioGroup({
+        items: ['Leigu', 'Eigin'],
+        width: "300px",
+        value: 'Leigu',
+        layout: "horizontal",
+        onValueChanged: function (e) {
+            var newText = "";
+            if (e.value == "Leigu") {
+                newText = "Hver er leigukostnaður þinn á mánuði";
+            }
+            else {
+                newText = "Hver er lánakostnaður þinn á mánuði";
+            }
+            $("#husnaedi-kostnadur-grp").hide();
+            $("#husnaedi-kostnadur-display").text(newText);
+            $("#husnaedi-kostnadur").dxSlider("instance").option("value", 0);
+            $("#husnaedi-kostnadur-grp").fadeIn("fast");
+        }
+    });
+    $("#laun").dxSlider({
+        min: 0,
+        max: 1000000,
+        step: 50000,
+        value: 0,
+        width: 300,
+        hint: "Dragðu stikuna á rétt laun.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 0) {
+                    return "Engin laun";
+                }
+                else if (value < 1000000) {
+                    return numberWithDots(value) + " kr.";
+                }
+                else {
+                    return numberWithDots(value) + " kr. eða hærri"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value < 1000000) {
+                    return "Engin laun";
+                }
+                else {
+                    return "Milljón+"
+                }
+            }
+        }
+    });
+    $("#husnaedi-kostnadur").dxSlider({
+        min: 0,
+        max: 400000,
+        step: 12500,
+        value: 0,
+        width: 300,
+        hint: "Dragðu stikuna á réttan kostnað.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 0) {
+                    return "Enginn húsnæðiskostnaður";
+                }
+                else if (value < 1000000) {
+                    return numberWithDots(value) + " kr.";
+                }
+                else {
+                    return numberWithDots(value) + " kr. eða hærri"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value < 400000) {
+                    return "Enginn";
+                }
+                else {
+                    return "400.000+ kr."
+                }
+            }
+        }
+    });
 }
 var dataItems = [
 {

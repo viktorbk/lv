@@ -33,6 +33,8 @@
     <body ng-controller="defaultCtrl">
 
         <div dx-tab-panel="tabPanel"></div>
+        <div dx-button="nextButton"></div>
+
         <div id="firstTab">
             <table class="tafla1">
                 <tr>
@@ -90,10 +92,38 @@
                 </tr>
             </table>
         </div>
+
+        <div id="thirdTab" class="dx-fieldset">
+            <table class="tafla3">
+                <tr>
+                    <td>
+                        <div id="laun-grp" class="grp">
+                            <p id="laun-display">Hver eru mánaðarleg laun þín eftir skatta?</p>
+                            <div id="laun"></div>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="husnaedi-grp" class="grp">
+                            <p id="husnaedi-display">Býrðu í leiguhúsnæði eða eiginhúsnæði?</p>
+                            <div id="husnaedi"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="husnaedi-kostnadur-grp" class="grp">
+                            <p id="husnaedi-kostnadur-display">Hver er leigukostnaður þinn á mánuði?</p>
+                            <div id="husnaedi-kostnadur"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <div id="thirdTab" class="dx-fieldset">
 
         </div>
-
-
     </body>
 </html>
