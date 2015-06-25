@@ -141,6 +141,8 @@
     <Content Include="DX\index.css" />
     <Content Include="DX\index.html" />
     <Content Include="DX\index.js" />
+    <Content Include="DX\js\angular-sanitize.min.js" />
+    <Content Include="DX\js\angular.min.js" />
     <Content Include="DX\js\dx.all.debug.js" />
     <Content Include="DX\js\dx.all.js" />
     <Content Include="DX\js\dx.webappjs.js" />

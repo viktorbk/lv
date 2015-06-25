@@ -2,12 +2,12 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html ng-app="lvApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launavernd</title>
-    
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
 
@@ -20,9 +20,20 @@
             width: 100%;
         }
     </style>
+    
+    <script src="~/DX/js/jquery-2.1.3.min.js"></script>
+    <script src="~/DX/js/globalize.min.js"></script>
+    <script src="~/DX/globalize-de.js"></script>
+    <script src="~/DX/js/angular.min.js"></script>
+    <script src="~/DX/js/angular-sanitize.min.js"></script>
+    <script src="~/DX/js/dx.webappjs.js"></script>
+
+    <script src="~/Scripts/_main.js"></script>
 </head>
-    <body>
+    <body ng-controller="defaultCtrl">
         
+        <div dx-data-grid="gridSettings"></div>
+
         <div id="tabPanel">
         </div>
         <div id="firstTab">
@@ -36,11 +47,6 @@
 
         </div>
 
-        <script src="~/DX/js/jquery-2.1.3.min.js"></script>
-        <script src="~/DX/js/globalize.min.js"></script>
-        <script src="~/DX/globalize-de.js"></script>
-        <script src="~/DX/js/dx.webappjs.js"></script>
-        
-        <script src="~/Scripts/_main.js"></script>
+
     </body>
 </html>
