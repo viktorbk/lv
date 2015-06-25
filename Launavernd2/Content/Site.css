@@ -23,3 +23,16 @@ textarea {
 .dx-multiview-wrapper {
     padding: 8px;
 }
+
+.tafla1 {
+    width: 100%;
+}
+#kyn {
+    border: 1px solid silver;
+}
+
+#aldur-grp {
+    width: 300px;
+    border: 1px solid silver;
+        float: right;
+}

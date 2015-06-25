@@ -31,19 +31,19 @@ function initPersonuuppl(itemElement) {
         min: 18,
         max: 70,
         step: 1,
-        width: "300px",
+        width: 300,
         hint: "Dragðu stikuna á réttan aldur.",
         tooltip: {
             enabled: true,
             format: function (value) {
-                return value + " ára"
+                return value + " ára";
             }
         },
         label: {
             visible: true,
             position: 'bottom',
             format: function (value) {
-                return value + " ára"
+                return value + " ára";
             }
         },
         onValueChanged: function (e) {
