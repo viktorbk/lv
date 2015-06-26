@@ -1,6 +1,6 @@
 ﻿var lvApp = angular.module('lvApp', ['dx']);
 lvApp.controller("defaultCtrl", function ($scope) {
-    
+
     $scope.tabPanel = {
         dataSource: dataItems,
         swipeEnabled: true,
@@ -16,9 +16,11 @@ lvApp.controller("defaultCtrl", function ($scope) {
             case 1:
                 initBorn(itemElement);
                 break;
-            
             case 2:
                 initPeningar(itemElement);
+                break;
+            case 3:
+                initUtreikningur(itemElement);
                 break;
             }
         }
@@ -267,6 +269,80 @@ function initPeningar(itemElement) {
         }
     });
 }
+
+function initUtreikningur(itemElement) {
+    itemElement.append($("#fourthTab").html());
+    $("#laun-prosenta").dxSlider({
+        min: 10,
+        max: 100,
+        step: 5,
+        value: 10,
+        width: 300,
+        hint: "Dragðu stikuna á prósentuna.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                return value + "%"
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                return value + "%"
+            }
+        }
+    });
+    $("#laun-ar").dxSlider({
+        min: 1,
+        max: 10,
+        step: 1,
+        value: 1,
+        width: 300,
+        hint: "Dragðu stikuna á árafjöldann.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                return value + " ár";
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                return value + " ár";
+            }
+        }
+    });
+    $("#idgjald").dxButton({
+        text: "Reikna líftryggingu",
+        onClick: function () {
+            var aldur = $("#aldur").dxSlider("option", "value");
+            var reykir = $("#reykir").dxRadioGroup("option", "value") == "Já" ? true : false;
+            var maki = $("#maki").dxRadioGroup("option", "value") == "Já" ? true : false;
+            var fjoldiBarna = $("#fjoldi-barna-heima").dxSlider("option", "value");
+            var laun = $("#laun").dxSlider("option", "value");
+            var husKostnadur = $("#husnaedi-kostnadur").dxSlider("option", "value");
+            var launaProsenta = $("#laun-prosenta").dxSlider("option", "value");
+            var fjoldiAra = $("#laun-ar").dxSlider("option", "value");
+            var liftryggingaUpphaed = laun * (launaProsenta / 100) * 12 * fjoldiAra;
+            $("#liftrygging-amt-display").text(numberWithDots(Math.floor(liftryggingaUpphaed)) + " kr.");
+            $.get('/Data/GetIdgjald', { aldur: aldur, reykir: reykir }).success(function (svar) {
+                if (!svar) {
+                    DevExpress.ui.notify("Vila kom upp!", "danger", 2000);
+                    return;
+                }
+                else {
+                    var idgjald = svar;
+                    var idgjaldAr = liftryggingaUpphaed / 1000000 * idgjald;
+                    var idgjaldManudur = idgjaldAr / 12;
+                    $("#idgjald-amt-display").text(numberWithDots(Math.floor(idgjaldManudur)) + " kr. á mánuði.");
+                }
+            });
+        }
+    });
+}
+
 var dataItems = [
 {
     html: getTitle('users', 'Persónuupplýsingar'),

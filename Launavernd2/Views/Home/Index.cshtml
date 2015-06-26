@@ -33,7 +33,6 @@
     <body ng-controller="defaultCtrl">
 
         <div dx-tab-panel="tabPanel"></div>
-        <div dx-button="nextButton"></div>
 
         <div id="firstTab">
             <table class="tafla1">
@@ -122,8 +121,37 @@
             </table>
         </div>
 
-        <div id="thirdTab" class="dx-fieldset">
-
+        <div id="fourthTab" class="dx-fieldset">
+            <table class="tafla4">
+                <tr>
+                    <td>
+                        <div id="laun-prosenta-grp" class="grp">
+                            <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
+                            <div id="laun-prosenta"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="laun-ar-grp" class="grp">
+                            <p id="laun-ar-display">Í hversu mörg ár viltu tryggja launin?</p>
+                            <div id="laun-ar"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="liftrygging-grp" class="grp">
+                            <p id="liftrygging-display">Við mælum með að taka líftryggingu upp á:&nbsp;</p> <p id="liftrygging-amt-display"></p>
+                            <div id="liftrygging"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="idgjald-grp" class="grp">
+                            <p id="idgjald-display">Iðgjald fyrir líftryggingu væri:</p> <p id="idgjald-amt-display"></p>
+                            <div id="idgjald"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
