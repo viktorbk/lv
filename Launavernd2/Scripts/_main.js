@@ -11,15 +11,22 @@ lvApp.controller("defaultCtrl", function ($scope) {
             var content = '';
             switch (itemIndex) {
             case 0:
-                initPersonuuppl(itemElement);
+                initForsida(itemElement);
+                nextButton(itemElement, itemIndex, "Hefja greiningu");
                 break;
             case 1:
-                initBorn(itemElement);
+                initPersonuuppl(itemElement);
+                nextButton(itemElement, itemIndex, "Næsta skref");
                 break;
             case 2:
-                initPeningar(itemElement);
+                initBorn(itemElement);
+                nextButton(itemElement, itemIndex, "Næsta skref");
                 break;
             case 3:
+                initPeningar(itemElement);
+                nextButton(itemElement, itemIndex, "Næsta skref");
+                break;
+            case 4:
                 initUtreikningur(itemElement);
                 break;
             }
@@ -27,6 +34,20 @@ lvApp.controller("defaultCtrl", function ($scope) {
     }
 });
 
+function nextButton(itemElement, id, text) {
+    itemElement.append($("<br>"));
+    var itemId = "next-button-" + id;
+    itemElement.append($("<div id='" + itemId + "'></div>"));
+    var selectItemId = "#" + itemId;
+    $(selectItemId).dxButton({
+        text: text,
+        onClick: function () {
+            var curIndex = $("#tab").dxTabPanel("option", "selectedIndex");
+            var nextIndex = (curIndex +1) % 5;
+            $("#tab").dxTabPanel("instance").option("selectedIndex", nextIndex);
+        }
+    });
+}
 function numberWithDots(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -149,6 +170,7 @@ function initBorn(itemElement) {
                 }
             }
             else {
+                $("#fjoldi-barna-heima").dxSlider("instance").option("value", 0)
                 $("#fjoldi-barna-heima-grp").fadeOut("slow");
             }
         }
@@ -343,7 +365,16 @@ function initUtreikningur(itemElement) {
     });
 }
 
+function initForsida(itemElement) {
+    itemElement.append($("#fifthTab").html());
+}
+
 var dataItems = [
+{
+    html: getTitle('info', 'Forsíða'),
+    data: {
+    }
+},
 {
     html: getTitle('users', 'Persónuupplýsingar'),
     data: {
