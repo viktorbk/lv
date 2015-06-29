@@ -47,6 +47,10 @@ function nextButton(itemElement, id, text) {
             $("#tab").dxTabPanel("instance").option("selectedIndex", nextIndex);
         }
     });
+    var docWidth = $(document).width();
+    var divWidth = $(selectItemId).width();
+    var centerMargin = (docWidth / 2) - (divWidth / 2) - 30;
+    $(selectItemId).css("margin-left", centerMargin);
 }
 function numberWithDots(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

@@ -48,3 +48,11 @@ ul li {
     display: list-item;
     margin-left: 2em;
 }
+
+.dx-item-content > h1 {
+    font-size: 24px;
+}
+
+.dx-item-content > h2 {
+    font-size: 16px;
+}
