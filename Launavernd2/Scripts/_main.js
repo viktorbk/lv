@@ -99,7 +99,7 @@ function initPersonuuppl(itemElement) {
     $("#reykir").dxRadioGroup({
         items: ['Já', 'Nei'],
         width: "300px",
-        value: 'Já',
+        value: 'Nei',
         layout: "horizontal"
     });
     $("#maki").dxRadioGroup({
@@ -216,6 +216,8 @@ function initPeningar(itemElement) {
             var newText = "";
             if (e.value == "Leigu") {
                 newText = "Hver er leigukostnaður þinn á mánuði";
+                $("#husnaedislan-grp").hide();
+                $("#husnaedislan").dxSlider("instance").option("value", 1000000);
             }
             else {
                 newText = "Hver er lánakostnaður þinn á mánuði";
@@ -255,7 +257,44 @@ function initPeningar(itemElement) {
                     return "Engin laun";
                 }
                 else {
-                    return "Milljón+"
+                    return "1 milljón"
+                }
+            }
+        }
+    });
+    $("#skammtimaskuldir").dxSlider({
+        min: 0,
+        max: 10000000,
+        step: 100000,
+        value: 0,
+        width: 300,
+        hint: "Dragðu stikuna á upphæð skammtímaskulda.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 0) {
+                    return "Engar skuldir";
+                }
+                else if (value < 10000000) {
+                    return "~" + numberWithDots(value) + " kr.";
+                }
+                else {
+                    return numberWithDots(value) + " kr. eða hærri"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value == 0) {
+                    return "Engar skuldir";
+                }
+                else if (value < 10000000) {
+                    return "~" + numberWithDots(value) + " kr.";
+                }
+                else {
+                    return "10 milljónir"
                 }
             }
         }
@@ -263,10 +302,19 @@ function initPeningar(itemElement) {
     $("#husnaedi-kostnadur").dxSlider({
         min: 0,
         max: 400000,
-        step: 12500,
+        step: 10000,
         value: 0,
         width: 300,
-        hint: "Dragðu stikuna á réttan kostnað.",
+        hint: "Dragðu stikuna á kostnaðinn.",
+        onValueChanged: function(e) {
+            var leigir = $("#husnaedi").dxRadioGroup("option", "value") == "Leigu"  ? true : false;
+            if (e.value > 0 && !leigir) {
+                $("#husnaedislan-grp").fadeIn("fast");
+            }
+            else {
+                $("#husnaedislan-grp").fadeOut("slow");
+            }
+        },
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -277,7 +325,7 @@ function initPeningar(itemElement) {
                     return numberWithDots(value) + " kr.";
                 }
                 else {
-                    return numberWithDots(value) + " kr. eða hærri"
+                    return numberWithDots(value) + " kr. eða hærri";
                 }
             }
         },
@@ -289,11 +337,46 @@ function initPeningar(itemElement) {
                     return "Enginn";
                 }
                 else {
-                    return "400.000+ kr."
+                    return "400.000 kr."
                 }
             }
         }
     });
+    $("#husnaedislan").dxSlider({
+        min: 1000000,
+        max: 50000000,
+        step: 500000,
+        value: 1000000,
+        width: 300,
+        hint: "Dragðu stikuna réttu lánsupphæðina.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                if (value == 1000000) {
+                    return "1 milljón eða minna";
+                }
+                else if (value < 50000000) {
+                    return "~" + numberWithDots(value) + " kr.";
+                }
+                else {
+                    return numberWithDots(value) + " kr. eða hærri"
+                }
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                if (value < 50000000) {
+                    return "1 milljón";
+                }
+                else {
+                    return "50 milljónir";
+                }
+            }
+        }
+    });
+    $("#husnaedislan-grp").hide();
 }
 
 function initUtreikningur(itemElement) {
