@@ -152,22 +152,10 @@
                                 </div>
                             </td>
                         </tr>
-                    </table>
-                    {{currentKyn}}
-                    {{aldur}}
-                    {{currentReykir}}
-                    {{currentMaki}}
-                </div>
-            </div>
-
-            <div data-options="dxTemplate : { name: 'tab2' } ">
-                <div style="margin:25px;">
-                    kuka
-                    <table class="tafla2">
                         <tr>
                             <td>
                                 <div id="fjoldi-barna-grp" class="grp">
-                                    <p id="fjoldi-barna-display">Hversu mörg börn átt þú?</p>
+                                    <p id="fjoldi-barna-display">Hversu mörg börn eru á þinni framfærslu?</p>
                                     <div dx-slider="{
                                     min: 0,
                                     max: 10,
@@ -189,6 +177,23 @@
                                 }"></div>
                                 </div>
                             </td>
+                        </tr>
+                    </table>
+                    {{currentKyn}}
+                    {{aldur}}
+                    {{currentReykir}}
+                    {{currentMaki}}
+                </div>
+            </div>
+
+            <div data-options="dxTemplate : { name: 'tab2' } ">
+                <div style="margin:25px;">
+                    kuka
+                    <table class="tafla2">
+                        <tr>
+                            <td>
+                                
+                            </td>
                             <td>
                                 <div id="fjoldi-barna-heima-grp" class="grp">
                                     <p id="fjoldi-barna-heima-display">Hversu mörg börn búa enn á heimili þínu?</p>
@@ -199,6 +204,94 @@
                         <tr>
                             <td></td>
                             <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div data-options="dxTemplate : { name: 'tab3' } ">
+                <div style="margin:25px;">
+                    <table class="tafla3">
+                        <tr>
+                            <td>
+                                <div id="laun-grp" class="grp">
+                                    <p id="laun-display">Hver eru mánaðarleg laun þín eftir skatta?</p>
+                                    <div id="laun" dx-slider="{
+                                        min: 0,
+                                        max: 1000000,
+                                        step: 50000,
+                                        bindingOptions: {
+                                            value: 'currentLaun'
+                                        },
+                                        width: 300,
+                                        hint: 'Dragðu stikuna á rétt laun.',
+                                        label: {
+                                            visible: true,
+                                            position: 'bottom',
+                                            format: formatLaunLabel
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            format: formatLaunTooltip
+                                        }
+                                }"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="skammtimaskuldir-grp">
+                                    <p id="skammtimaskuldir-display">Hversu miklar skammtímaskuldir hvíla á þér?</p>
+                                    <div id="skammtimaskuldir" dx-slider="{
+                                        min: 0,
+                                        max: 10000000,
+                                        step: 100000,
+                                        bindingOptions: {
+                                            value: 'currentSkammtimaskuldir'
+                                        },
+                                        width: 300,
+                                        hint: 'Dragðu stikuna á upphæð skammtímaskulda.',
+                                        label: {
+                                            visible: true,
+                                            position: 'bottom',
+                                            format: formatSkammtimaskuldirLabel
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            format: formatSkammtimaskuldirTooltip
+                                        }
+                                }"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="husnaedi-grp" class="grp">
+                                    <p id="husnaedi-display">Býrðu í leiguhúsnæði eða eiginhúsnæði?</p>
+                                    <div dx-radio-group="{
+                                        items: husnaediItems,
+                                        width: '300px',
+                                        layout: 'horizontal',
+                                        onValueChanged: onHusnaediChanged,
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'currentHusnaedi'
+                                        }
+                                    }"></div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="husnaedi-kostnadur-grp" class="grp">
+                                    <p id="husnaedi-kostnadur-display">Hver er leigukostnaður þinn á mánuði?</p>
+                                    <div id="husnaedi-kostnadur"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="husnaedislan-grp">
+                                    <p id="husnaedislan-display">Hverjar eru eftirstöðvar húsnæðislánsins?</p>
+                                    <div id="husnaedislan"></div>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                 </div>

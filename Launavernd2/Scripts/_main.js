@@ -45,13 +45,8 @@ function stillaTabPanel($scope) {
                 { text: "Já", value: 1 },
                 { text: "Nei", value: 2 }
             ],
-            currentMaki: 2
-        },
-        {
-            title: "Börn",
-            template: 'tab2',
+            currentMaki: 2,
             currentFjoldiBarna: 0,
-            
             formatBornTooltip: function(value) {
                 if (value == 0) {
                     return "Engin börn";
@@ -76,8 +71,85 @@ function stillaTabPanel($scope) {
             }
         },
         {
+            title: "Börn",
+            template: 'tab2',
+            
+        },
+        {
             title: "Lán/útgjöld",
-            template: 'tab3'
+            template: 'tab3',
+            currentLaun: 0,
+            currentSkammtimaskuldir: 0,
+            currentHusnaedi: 1,
+            currentHusnaediskostnadur: 0,
+            currentLan: 0,
+            husnaediItems: [
+                { text: "Leigu", value: 1 },
+                { text: "Eigin", value: 2 }
+            ],
+            onHusnaediChanged: function (e) {
+                var newText = '';
+                if (e.value == 'Leigu') {
+                    newText = 'Hver er leigukostnaður þinn á mánuði';
+                    $('#husnaedislan-grp').hide();
+                    $('#husnaedislan').dxSlider('instance').option('value', 1000000);
+                }
+                else {
+                    newText = 'Hver er lánakostnaður þinn á mánuði';
+                }
+                $('#husnaedi-kostnadur-grp').hide();
+                $('#husnaedi-kostnadur-display').text(newText);
+                $('#husnaedi-kostnadur').dxSlider('instance').option('value', 0);
+                $('#husnaedi-kostnadur-grp').fadeIn('fast');
+            },
+            formatSkammtimaskuldirTooltip: {
+                enabled: true,
+                format: function (value) {
+                    if (value == 0) {
+                        return "Engar skuldir";
+                    }
+                    else if (value < 10000000) {
+                        return "~" + numberWithDots(value) + " kr.";
+                    }
+                    else {
+                        return numberWithDots(value) + " kr. eða hærri";
+                    }
+                }
+            },
+            formatSkammtimaskuldirLabel: {
+                visible: true,
+                position: 'bottom',
+                format: function (value) {
+                    if (value == 0) {
+                        return "Engar skuldir";
+                    }
+                    else if (value < 10000000) {
+                        return "~" + numberWithDots(value) + " kr.";
+                    }
+                    else {
+                        return "10 milljónir";
+                    }
+                }
+            },
+            formatLaunTooltip: function (value) {
+                if (value == 0) {
+                    return "Engin laun";
+                }
+                else if (value < 1000000) {
+                    return numberWithDots(value) + " kr.";
+                }
+                else {
+                    return numberWithDots(value) + " kr. eða hærri";
+                }
+            },
+            formatLaunLabel: function (value) {
+                if (value < 1000000) {
+                    return "Engin laun";
+                }
+                else {
+                    return "1 milljón";
+                }
+            },
         },
         {
             title: "Útreikningur",
@@ -334,7 +406,7 @@ function initPeningar(itemElement) {
                     return "~" + numberWithDots(value) + " kr.";
                 }
                 else {
-                    return numberWithDots(value) + " kr. eða hærri"
+                    return numberWithDots(value) + " kr. eða hærri";
                 }
             }
         },
@@ -349,7 +421,7 @@ function initPeningar(itemElement) {
                     return "~" + numberWithDots(value) + " kr.";
                 }
                 else {
-                    return "10 milljónir"
+                    return "10 milljónir";
                 }
             }
         }
