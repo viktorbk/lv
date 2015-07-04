@@ -1,6 +1,5 @@
 ﻿var lvApp = angular.module('lvApp', ['dx']);
 lvApp.controller("defaultCtrl", function ($scope) {
-
     stillaTabPanel($scope);
 
     $scope.tabChanged = function (e) {
@@ -15,6 +14,7 @@ lvApp.controller("defaultCtrl", function ($scope) {
         } 
     };
 
+    
 });
 
 function stillaTabPanel($scope) {
@@ -32,14 +32,48 @@ function stillaTabPanel($scope) {
                 { text: "Kona", value: 2 }
             ],
             currentKyn: 1,
+            aldur: 18,
             formatAldur: function(value) {
                 return value < 70 ? value + ' ára' : value + ' ára eða eldri'
             },
-            aldur: 18
+            reykir: [
+                { text: "Já", value: 1 },
+                { text: "Nei", value: 2 }
+            ],
+            currentReykir: 2,
+            maki: [
+                { text: "Já", value: 1 },
+                { text: "Nei", value: 2 }
+            ],
+            currentMaki: 2
         },
         {
             title: "Börn",
-            template: 'tab2'
+            template: 'tab2',
+            currentFjoldiBarna: 0,
+            
+            formatBornTooltip: function(value) {
+                if (value == 0) {
+                    return "Engin börn";
+                }
+                else if (value < 10) {
+                    return value + " börn";
+                }
+                else {
+                    return value + " eða fleiri börn"
+                }
+            },
+            formatBornLabel: function(value) {
+                if (value == 0) {
+                    return "Engin";
+                }
+                else if (value < 10) {
+                    return value;
+                }
+                else {
+                    return value + "+"
+                }
+            }
         },
         {
             title: "Lán/útgjöld",
@@ -200,72 +234,6 @@ function initUtreikningur(itemElement) {
 function initBorn(itemElement) {
     itemElement.append($("#secondTab").html());
 
-    $("#fjoldi-barna").dxSlider({
-        min: 0,
-        max: 10,
-        step: 1,
-        value: 0,
-        width: 300,
-        hint: "Dragðu stikuna á réttan fjölda barna.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 0) {
-                    return "Engin börn";
-                }
-                else if (value < 10) {
-                    return value + " börn";
-                }
-                else {
-                    return value + " eða fleiri börn"
-                }
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value == 0) {
-                    return "Engin";
-                }
-                else if (value < 10) {
-                    return value;
-                }
-                else {
-                    return value + "+"
-                }
-            }
-        },
-        onValueChanged: function (e) {
-            if (e.value != 0) {
-                $("#fjoldi-barna-heima-grp").fadeIn("slow");
-                var currvalue = $("#fjoldi-barna-heima").dxSlider("option", "value");
-                var instance = $("#fjoldi-barna-heima").dxSlider("instance");
-                instance.option("tooltip", {
-                    enabled: true,
-                    format: function (value) {
-                        if (value == 0) {
-                            return "Engin börn";
-                        }
-                        else if (value == 10) {
-                            return value + " eða fleiri börn"
-                        }
-                        else if (value <= e.value) {
-                            return value + " börn";
-                        }
-                    }
-                });
-                instance.option("max", e.value);
-                if (currvalue > e.value) {
-                    $("#fjoldi-barna-heima").dxSlider("instance").option("value", e.value);
-                }
-            }
-            else {
-                $("#fjoldi-barna-heima").dxSlider("instance").option("value", 0)
-                $("#fjoldi-barna-heima-grp").fadeOut("slow");
-            }
-        }
-    });
     $("#fjoldi-barna-heima").dxSlider({
         min: 0,
         max: 10,

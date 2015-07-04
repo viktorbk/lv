@@ -126,20 +126,80 @@
                             <td>
                                 <div id="reykir-grp" class="grp">
                                     <p id="reykir-display">Reykir þú?</p>
-                                    <div id="reykir"></div>
+                                    <div dx-radio-group="{
+                                        items: reykir,
+                                        layout: 'horizontal',
+                                        selectedIndex: 2,
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'currentReykir'
+                                        }
+                                    }"></div>
                                 </div>
                             </td>
                             <td>
                                 <div id="maki-grp" class="grp">
                                     <p id="maki-display">Áttu maka?</p>
-                                    <div id="maki"></div>
+                                    <div dx-radio-group="{
+                                        items: maki,
+                                        layout: 'horizontal',
+                                        selectedIndex: 2,
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'currentMaki'
+                                        }
+                                    }"></div>
                                 </div>
                             </td>
                         </tr>
                     </table>
                     {{currentKyn}}
                     {{aldur}}
+                    {{currentReykir}}
+                    {{currentMaki}}
                 </div>
+            </div>
+        </div>
+        <div data-options="dxTemplate : { name: 'tab2' } ">
+            <div style="margin:25px;">
+                <table class="tafla2">
+                    <tr>
+                        <td>
+                            <div id="fjoldi-barna-grp" class="grp">
+                                <p id="fjoldi-barna-display">Hversu mörg börn átt þú?</p>
+                                <div dx-slider="{
+                                    min: 0,
+                                    max: 10,
+                                    step: 1,
+                                    width: 300,
+                                    bindingOptions: {
+                                        value: 'currentFjoldiBarna'
+                                    },
+                                    hint: 'Dragðu stikuna á réttan fjölda barna.',
+                                    label: {
+                                        visible: true,
+                                        position: 'bottom',
+                                        format: formatBornLabel
+                                    },
+                                    tooltip: {
+                                        enabled: true,
+                                        format: formatBornTooltip
+                                    }
+                                }"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="fjoldi-barna-heima-grp" class="grp">
+                                <p id="fjoldi-barna-heima-display">Hversu mörg börn búa enn á heimili þínu?</p>
+                                
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
