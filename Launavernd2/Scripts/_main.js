@@ -1,114 +1,201 @@
 ﻿var lvApp = angular.module('lvApp', ['dx']);
 lvApp.controller("defaultCtrl", function ($scope) {
 
-    $scope.tabPanel = {
-        dataSource: dataItems,
-        swipeEnabled: true,
-        loop: true,
-        animationEnabled: true,
-        height: document.documentElement.clientHeight - 1,
-        itemTemplate: function(itemData, itemIndex, itemElement) {
-            var content = '';
-            switch (itemIndex) {
-            case 0:
-                initForsida(itemElement);
-                nextButton(itemElement, itemIndex, "Hefja greiningu");
-                break;
-            case 1:
-                initPersonuuppl(itemElement);
-                nextButton(itemElement, itemIndex, "Næsta skref");
-                break;
-            case 2:
-                initBorn(itemElement);
-                nextButton(itemElement, itemIndex, "Næsta skref");
-                break;
-            case 3:
-                initPeningar(itemElement);
-                nextButton(itemElement, itemIndex, "Næsta skref");
-                break;
-            case 4:
-                initUtreikningur(itemElement);
-                break;
-            }
-        }
+    stillaTabPanel($scope);
+
+    $scope.tabChanged = function (e) {
+        // þegar valið tab breytist;
     }
+
+    // hér er hægt að setja inn fyrir næsta tab
+    $scope.buttonSettings = {
+        text: 'Add item',
+        clickAction: function (e) {
+            $scope.tabPanelItems.push({ title: 'New item' });
+        } 
+    };
+
 });
 
-function nextButton(itemElement, id, text) {
-    itemElement.append($("<br>"));
-    var itemId = "next-button-" + id;
-    itemElement.append($("<div id='" + itemId + "'></div>"));
-    var selectItemId = "#" + itemId;
-    $(selectItemId).dxButton({
-        text: text,
-        onClick: function () {
-            var curIndex = $("#tab").dxTabPanel("option", "selectedIndex");
-            var nextIndex = (curIndex +1) % 5;
-            $("#tab").dxTabPanel("instance").option("selectedIndex", nextIndex);
+function stillaTabPanel($scope) {
+    $scope.docHeight = document.documentElement.clientHeight - 1,
+    $scope.tabPanelItems = [
+        {
+            title: "Forsíða",
+            template: 'tab0'
+        },
+        {
+            title: "Persónuupplýsingar",
+            template: 'tab1',
+            kyn: [
+                { text: "Karl", value: 1 },
+                { text: "Kona", value: 2 }
+            ],
+            currentKyn: 1,
+            formatAldur: function(value) {
+                return value < 70 ? value + ' ára' : value + ' ára eða eldri'
+            },
+            aldur: 18
+        },
+        {
+            title: "Börn",
+            template: 'tab2'
+        },
+        {
+            title: "Lán/útgjöld",
+            template: 'tab3'
+        },
+        {
+            title: "Útreikningur",
+            template: 'tab4'
         }
-    });
-    var docWidth = $(document).width();
-    var divWidth = $(selectItemId).width();
-    var centerMargin = (docWidth / 2) - (divWidth / 2) - 30;
-    $(selectItemId).css("margin-left", centerMargin);
+    ];
 }
-function numberWithDots(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+
+angular.element(document).ready(function () {
+    //debugger;
+    angular.bootstrap(document, ['lvApp']);
+});
+
+
+
+
+
+
+
+
+
 
 function initPersonuuppl(itemElement) {
-    itemElement.append($("#firstTab").html());
+        itemElement.append($("#firstTab").html());
 
-    $("#kyn").dxRadioGroup({
-        items: ['Karl', 'Kona'],
-        width: "300px",
-        value: 'Karl',
-        layout: "horizontal"
-    });
-    $("#aldur").dxSlider({
-        min: 18,
-        max: 70,
-        step: 1,
-        value: 18,
+        //$("#kyn").dxRadioGroup({
+        //    items: ['Karl', 'Kona'],
+        //    width: "300px",
+        //    value: $scope.kyn,
+        //    layout: "horizontal",
+        //    onValueChanged: function (e) {
+        //        debugger;
+        //        $scope.kyn = e.value;
+        //    }
+        //});
+        $("#aldur").dxSlider({
+            min: 18,
+            max: 70,
+            step: 1,
+            value: $scope.aldur,
+            width: 300,
+            hint: "Dragðu stikuna á réttan aldur.",
+            tooltip: {
+                enabled: true,
+                format: function (value) {
+                    if (value < 70) {
+                        return value + " ára";
+                    }
+                    else {
+                        return value + " ára eða eldri";
+                    }
+                }
+            },
+            label: {
+                visible: true,
+                position: 'bottom',
+                format: function (value) {
+                    if (value < 70) {
+                        return value + " ára";
+                    }
+                    else {
+                        return value + "+ ára";
+                    }
+                }
+            }
+        });
+        $("#reykir").dxRadioGroup({
+            items: ['Já', 'Nei'],
+            width: "300px",
+            value: $scope.reykir,
+            layout: "horizontal"
+        });
+        $("#maki").dxRadioGroup({
+            items: ['Já', 'Nei'],
+            width: "300px",
+            value: $scope.maki,
+            layout: "horizontal"
+        });
+    };
+function initUtreikningur(itemElement) {
+    itemElement.append($("#fourthTab").html());
+    $("#laun-prosenta").dxSlider({
+        min: 10,
+        max: 100,
+        step: 5,
+        value: 10,
         width: 300,
-        hint: "Dragðu stikuna á réttan aldur.",
+        hint: "Dragðu stikuna á prósentuna.",
         tooltip: {
             enabled: true,
             format: function (value) {
-                if (value < 70) {
-                    return value + " ára";
-                }
-                else {
-                    return value + " ára eða eldri"
-                }
+                return value + "%"
             }
         },
         label: {
             visible: true,
             position: 'bottom',
             format: function (value) {
-                if (value < 70) {
-                    return value + " ára";
-                }
-                else {
-                    return value + "+ ára";
-                }
+                return value + "%"
             }
         }
     });
-    $("#reykir").dxRadioGroup({
-        items: ['Já', 'Nei'],
-        width: "300px",
-        value: 'Nei',
-        layout: "horizontal"
+    $("#laun-ar").dxSlider({
+        min: 1,
+        max: 10,
+        step: 1,
+        value: 1,
+        width: 300,
+        hint: "Dragðu stikuna á árafjöldann.",
+        tooltip: {
+            enabled: true,
+            format: function (value) {
+                return value + " ár";
+            }
+        },
+        label: {
+            visible: true,
+            position: 'bottom',
+            format: function (value) {
+                return value + " ár";
+            }
+        }
     });
-    $("#maki").dxRadioGroup({
-        items: ['Já', 'Nei'],
-        width: "300px",
-        value: 'Nei',
-        layout: "horizontal"
+    $("#idgjald").dxButton({
+        text: "Reikna líftryggingu",
+        onClick: function () {
+            var aldur = $("#aldur").dxSlider("option", "value");
+            var reykir = $("#reykir").dxRadioGroup("option", "value") == "Já" ? true : false;
+            var maki = $("#maki").dxRadioGroup("option", "value") == "Já" ? true : false;
+            var fjoldiBarna = $("#fjoldi-barna-heima").dxSlider("option", "value");
+            var laun = $("#laun").dxSlider("option", "value");
+            var husKostnadur = $("#husnaedi-kostnadur").dxSlider("option", "value");
+            var launaProsenta = $("#laun-prosenta").dxSlider("option", "value");
+            var fjoldiAra = $("#laun-ar").dxSlider("option", "value");
+            var liftryggingaUpphaed = laun * (launaProsenta / 100) * 12 * fjoldiAra;
+            $("#liftrygging-amt-display").text(numberWithDots(Math.floor(liftryggingaUpphaed)) + " kr.");
+            $.get('/Data/GetIdgjald', { aldur: aldur, reykir: reykir }).success(function (svar) {
+                if (!svar) {
+                    DevExpress.ui.notify("Vila kom upp!", "danger", 2000);
+                    return;
+                }
+                else {
+                    var idgjald = svar;
+                    var idgjaldAr = liftryggingaUpphaed / 1000000 * idgjald;
+                    var idgjaldManudur = idgjaldAr / 12;
+                    $("#idgjald-amt-display").text(numberWithDots(Math.floor(idgjaldManudur)) + " kr. á mánuði.");
+                }
+            });
+        }
     });
 }
+
 
 function initBorn(itemElement) {
     itemElement.append($("#secondTab").html());
@@ -379,81 +466,27 @@ function initPeningar(itemElement) {
     $("#husnaedislan-grp").hide();
 }
 
-function initUtreikningur(itemElement) {
-    itemElement.append($("#fourthTab").html());
-    $("#laun-prosenta").dxSlider({
-        min: 10,
-        max: 100,
-        step: 5,
-        value: 10,
-        width: 300,
-        hint: "Dragðu stikuna á prósentuna.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                return value + "%"
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                return value + "%"
-            }
-        }
-    });
-    $("#laun-ar").dxSlider({
-        min: 1,
-        max: 10,
-        step: 1,
-        value: 1,
-        width: 300,
-        hint: "Dragðu stikuna á árafjöldann.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                return value + " ár";
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                return value + " ár";
-            }
-        }
-    });
-    $("#idgjald").dxButton({
-        text: "Reikna líftryggingu",
-        onClick: function () {
-            var aldur = $("#aldur").dxSlider("option", "value");
-            var reykir = $("#reykir").dxRadioGroup("option", "value") == "Já" ? true : false;
-            var maki = $("#maki").dxRadioGroup("option", "value") == "Já" ? true : false;
-            var fjoldiBarna = $("#fjoldi-barna-heima").dxSlider("option", "value");
-            var laun = $("#laun").dxSlider("option", "value");
-            var husKostnadur = $("#husnaedi-kostnadur").dxSlider("option", "value");
-            var launaProsenta = $("#laun-prosenta").dxSlider("option", "value");
-            var fjoldiAra = $("#laun-ar").dxSlider("option", "value");
-            var liftryggingaUpphaed = laun * (launaProsenta / 100) * 12 * fjoldiAra;
-            $("#liftrygging-amt-display").text(numberWithDots(Math.floor(liftryggingaUpphaed)) + " kr.");
-            $.get('/Data/GetIdgjald', { aldur: aldur, reykir: reykir }).success(function (svar) {
-                if (!svar) {
-                    DevExpress.ui.notify("Vila kom upp!", "danger", 2000);
-                    return;
-                }
-                else {
-                    var idgjald = svar;
-                    var idgjaldAr = liftryggingaUpphaed / 1000000 * idgjald;
-                    var idgjaldManudur = idgjaldAr / 12;
-                    $("#idgjald-amt-display").text(numberWithDots(Math.floor(idgjaldManudur)) + " kr. á mánuði.");
-                }
-            });
-        }
-    });
-}
-
 function initForsida(itemElement) {
     itemElement.append($("#fifthTab").html());
+}
+
+function nextButton(itemElement, id, text) {
+    itemElement.append($("<br>"));
+    var itemId = "next-button-" + id;
+    itemElement.append($("<div id='" + itemId + "'></div>"));
+    var selectItemId = "#" + itemId;
+    $(selectItemId).dxButton({
+        text: text,
+        onClick: function () {
+            var curIndex = $("#tab").dxTabPanel("option", "selectedIndex");
+            var nextIndex = (curIndex + 1) % 5;
+            $("#tab").dxTabPanel("instance").option("selectedIndex", nextIndex);
+        }
+    });
+    var docWidth = $(document).width();
+    var divWidth = $(selectItemId).width();
+    var centerMargin = (docWidth / 2) - (divWidth / 2) - 30;
+    $(selectItemId).css("margin-left", centerMargin);
 }
 
 var dataItems = [
@@ -483,63 +516,43 @@ var dataItems = [
     }
 }];
 
+
+function getTabPanelObject($scope) {
+    return {
+        dataSource: dataItems,
+        swipeEnabled: true,
+        loop: true,
+        animationEnabled: true,
+        height: document.documentElement.clientHeight - 1,
+        itemTemplate: function(itemData, itemIndex, itemElement) {
+            var content = '';
+            switch (itemIndex) {
+                case 0:
+                    initForsida(itemElement);
+                    nextButton(itemElement, itemIndex, "Hefja greiningu");
+                    break;
+                case 1:
+                    $scope.initPersonuuppl(itemElement);
+                    nextButton(itemElement, itemIndex, "Næsta skref");
+                    break;
+                case 2:
+                    initBorn(itemElement);
+                    nextButton(itemElement, itemIndex, "Næsta skref");
+                    break;
+                case 3:
+                    initPeningar(itemElement);
+                    nextButton(itemElement, itemIndex, "Næsta skref");
+                    break;
+                case 4:
+                    initUtreikningur(itemElement);
+                    break;
+            }
+        }
+    }
+}
+
 function getTitle(icon, txt) {
     return '<table><tr><td><i class="fa fa-' + icon + ' lv-icon"></i></td><td style="padding-left:8px;">&nbsp;' + txt + '</td></tr></table>';
 }
 
-//$().ready(function () {
-
-
-//    $("#tabPanel").dxTabPanel({
-//        items: dataItems,
-//        height: document.documentElement.clientHeight - 1,
-//        itemTemplate: function (itemData, itemIndex, itemElement) {
-//            var content = '';
-//            switch (itemIndex) {
-//                case 0:
-//                    initPersonuuppl(itemElement);
-//                    break;
-//            }
-            
-
-//        }
-//    });
-
-//    function initPersonuuppl(itemElement) {
-//        itemElement.append($("#firstTab").html());
-
-//        $("#kyn").dxRadioGroup({
-//            items: ['Karl', 'Kona'],
-//            value: 'Karl',
-//            layout: "horizontal"
-//        });
-//    }
-
-//    function InitAddressData(data) {
-//        $("#state").dxTextBox({
-//            value: data.state
-//        });
-//        $("#city").dxTextBox({
-//            value: data.city
-//        });
-//        $("#street").dxTextBox({
-//            value: data.street
-//        });
-//        return $("#thirdTab");
-//    }
-
-//    function InitCarData(data) {
-//        $("#firstName").dxTextBox({
-//            value: data.firstName
-//        });
-//        $("#lastName").dxTextBox({
-//            value: data.lastName
-//        });
-//        $("#birthYear").dxTextBox({
-//            value: data.birthYear
-//        });
-//        return $("#firstTab");
-//    }
-
-//});
 

@@ -24,10 +24,10 @@ textarea {
     padding: 8px;
 }
 
-.tafla1, .tafla2, .tafla3, .tafla4 {
+.tafla, .tafla1, .tafla2, .tafla3, .tafla4 {
     margin-top: 25px;
     width: 750px;
-    border: 1px solid black;
+    border: 1px solid #DDDDDD;
 }
 
 .dx-overlay-content {

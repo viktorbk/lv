@@ -2,7 +2,7 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html ng-app="lvApp">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,16 +32,125 @@
 </head>
     <body ng-controller="defaultCtrl">
 
-        <div dx-tab-panel="tabPanel" id="tab"></div>
+        @*<div dx-tab-panel="tabPanel" id="tab"></div>*@
 
-        <div id="fifthTab" class="dx-fieldset">
+        <div dx-tab-panel="{
+                items: tabPanelItems,
+                titleTemplate: 'title',
+                itemTemplate: 'tab',
+                onSelectionChanged: tabChanged,
+                height: docHeight
+             }">
+            <div data-options="dxTemplate : { name: 'title' } ">
+                <p>{{title}}</p>
+            </div>
+
+            @* ----- TAB0 ------*@
+            <div data-options="dxTemplate : { name: 'tab0' } ">
+                <div style="margin:25px;">
+                    <h1 align="center">Vörður líftryggingar</h1>
+                    <h2 align="center">Reiknaðu út þörf þína fyrir líf- og sjúkdómatryggingar</h2>
+                    <hr />
+                    <p>Í þessari reiknivél höfum sett inn helstu þætti sem máli skipta þegar þú veltir fyrir þér hve háa vátryggingavernd þú ættir að kaupa.</p>
+                    <br />
+                    <p>
+                        Fjölmargir þættir hafa áhrif á líf hvers einstaklings, ekki síst þegar sjúkdómar, slys og andlát setja strik í reikninginn.
+                        Fyrirhyggja skiptir þá máli og rétt tryggingavernd getur skipt sköpum fyrir framhaldið, fyrir þig og þá sem næst þér standa.
+                    </p>
+                    <p>Líf- og sjúkdómatrygging létta baráttuna í slíkum mótbyr.</p>
+                    <br />
+                    <p>Í reikniforritinu spyrjum við þig um helstu atriði sem máli skipta við ákvörðun um  þá vátryggingavernd sem kann að henta þér.</p>
+                    <ul>
+                        <li>Reiknaðu út hve háa vernd þú þarft</li>
+                        <li>Veltu fyrir þér hve há iðgjöld þú ræður við að greiða</li>
+                        <li>Eigirðu fjölskyldu þarftu að velta fyrir þér hver staða hennar verður, ef þú fellur frá.</li>
+                        <li>Ef þú færð illvígan sjúkdóm, veltu fyrir þér fjárhag þínum ef þú missir tekjur vegna hans</li>
+                        <li>Ef þú skuldar fasteignalán og skammtímaskuldir hvernig viltu sjá lausn á þeim skuldbindingum</li>
+                    </ul>
+                    <br />
+                    <p>Reiknivélin ákvarðar <strong>ekki</strong> fyrir þig hve háa vernd þú þarft til að uppfylla hugmyndir þínar. </p>
+                    <p>Þú svarar spurningum okkar, og á grundvelli svaranna gerum við tillögu að vátryggingavernd sem gæti hentað þér. </p>
+                    <p>Við upplýsum þig um á hverju tillögur okkar byggja, en þú getur síðan breytt þessum forsendum til að aðlaga þínum hugmyndum.</p>
+                    <p>
+                        Líf- og sjúkdómatryggingar greiða út skattfrjálsa eingreiðslu ef þú deyrð eða eða greinist með illvígan sjúkdóm á gildistíma trygginganna.
+                        Þannig byggir þú upp <strong>fjárhagslegt öryggi</strong> fyrir þig og þína á erfiðleikatímum.
+                    </p>
+
+                </div>
+            </div>
+
+            @* ----- TAB1 ------*@
+            <div data-options="dxTemplate : { name: 'tab1' } ">
+                <div style="margin:25px;">
+                    <table class="tafla1">
+                        <tr>
+                            <td>
+                                <div id="kyn-grp" class="grp">
+                                    <p id="kyn-display">Kyn?</p>
+                                    <div dx-radio-group="{
+                                        items: kyn,
+                                        layout: 'horizontal',
+                                        selectedIndex: 0,
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'currentKyn'
+                                        }
+                                    }"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="aldur-grp" class="grp">
+                                    <p id="aldur-display">Aldur?</p>
+                                    <div dx-slider="{
+                                        min: 18,
+                                        max: 70,
+                                        step: 1,
+                                        hint: 'dragðu stikuna á réttan aldur.',
+                                        bindingOptions: {
+                                            value: 'aldur'
+                                        },
+                                        label: {
+                                            visible: true,
+                                            position: 'bottom',
+                                            format: formatAldur
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            format: formatAldur
+                                        }
+                                     }"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="reykir-grp" class="grp">
+                                    <p id="reykir-display">Reykir þú?</p>
+                                    <div id="reykir"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="maki-grp" class="grp">
+                                    <p id="maki-display">Áttu maka?</p>
+                                    <div id="maki"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    {{currentKyn}}
+                    {{aldur}}
+                </div>
+            </div>
+        </div>
+
+        @*<div id="fifthTab" class="dx-fieldset">
             <h1 align="center">Vörður líftryggingar</h1>
             <h2 align="center">Reiknaðu út þörf þína fyrir líf- og sjúkdómatryggingar</h2>
             <hr />
             <p>Í þessari reiknivél höfum sett inn helstu þætti sem máli skipta þegar þú veltir fyrir þér hve háa vátryggingavernd þú ættir að kaupa.</p>  
             <br />
             <p>Fjölmargir þættir hafa áhrif á líf hvers einstaklings, ekki síst þegar sjúkdómar, slys og andlát setja strik í reikninginn. 
-            Fyrirhyggja skiptir þá máli og rétt tryggingavernd getur skipt sköpum fyrir framhaldið, fyrir þig og þá sem næst þér standa.</p> 
+                Fyrirhyggja skiptir þá máli og rétt tryggingavernd getur skipt sköpum fyrir framhaldið, fyrir þig og þá sem næst þér standa.</p> 
             <p>Líf- og sjúkdómatrygging létta baráttuna í slíkum mótbyr.</p>
             <br />
             <p>Í reikniforritinu spyrjum við þig um helstu atriði sem máli skipta við ákvörðun um  þá vátryggingavernd sem kann að henta þér.</p>
@@ -57,16 +166,26 @@
             <p>Þú svarar spurningum okkar, og á grundvelli svaranna gerum við tillögu að vátryggingavernd sem gæti hentað þér. </p>
             <p>Við upplýsum þig um á hverju tillögur okkar byggja, en þú getur síðan breytt þessum forsendum til að aðlaga þínum hugmyndum.</p>
             <p>Líf- og sjúkdómatryggingar greiða út skattfrjálsa eingreiðslu ef þú deyrð eða eða greinist með illvígan sjúkdóm á gildistíma trygginganna. 
-            Þannig byggir þú upp <strong>fjárhagslegt öryggi</strong> fyrir þig og þína á erfiðleikatímum.</p>
+                Þannig byggir þú upp <strong>fjárhagslegt öryggi</strong> fyrir þig og þína á erfiðleikatímum.</p>
 
-</div>
+        </div>
+
         <div id="firstTab">
             <table class="tafla1">
                 <tr>
                     <td>
                         <div id="kyn-grp" class="grp">
                             <p id="kyn-display">Kyn?</p>
-                            <div id="kyn"></div>
+                            <div dx-radio-group="{
+                                items: kyn,
+                                valueExpr: 'value',
+                                onValueChanged: changeKyn,
+                                selectedIndex: 0,
+                                layout: 'horizontal',
+                                bindingOptions: {
+                                    value: 'currentKyn'
+                                }
+                             }"></div>
                         </div>
                     </td>
                     <td>
@@ -178,6 +297,9 @@
                         </div>
                     </td>
                 </tr>
+            </table>
+            
+            <table class="tafla">
                 <tr>
                     <td>
                         <div id="liftrygging-grp" class="grp">
@@ -193,6 +315,30 @@
                     </td>
                 </tr>
             </table>
-        </div>
+
+            <table class="tafla">
+                <tr>
+                    <td style="width:100px">Kyn</td>
+                    <td>{{kyn}}</td>
+                </tr>
+            </table>
+
+            <table class="tafla">
+                <tr>
+                    <td>
+                        <div id="liftrygging-grp" class="grp">
+                            <p id="liftrygging-display">Við mælum með að taka líftryggingu upp á:&nbsp;</p> <p id="liftrygging-amt-display"></p>
+                            <div id="liftrygging"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="idgjald-grp" class="grp">
+                            <p id="idgjald-display">Iðgjald fyrir líftryggingu væri:</p> <p id="idgjald-amt-display"></p>
+                            <div id="idgjald"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>*@
     </body>
 </html>
