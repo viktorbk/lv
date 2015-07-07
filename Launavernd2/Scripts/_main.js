@@ -1,9 +1,23 @@
-﻿var lvApp = angular.module('lvApp', ['dx']);
+﻿TAB_PERSONUUPPL = 1;
+TAB_UTREIKNINGUR = 3;
+
+var lvApp = angular.module('lvApp', ['dx']);
 lvApp.controller("defaultCtrl", function ($scope) {
+    
     stillaTabPanel($scope);
 
     $scope.tabChanged = function (e) {
-        // þegar valið tab breytist;
+        var selectedTab = e.component.option('selectedIndex');
+        var icon = $scope.tabPanelItems[selectedTab].icon;
+        //var icnBkgnd = $(".fa-" + icon).parent().parent().parent().parent().parent().parent();
+        //icnBkgnd.css({'color': 'white', 'background-color': 'green'});
+        $(".fa-" + icon).css({'color': 'green'});
+        if (selectedTab == TAB_UTREIKNINGUR)
+            initEditables();
+    }
+
+    $scope.tabInit = function(e) {
+        window.tabPanel = $("#tabPanel").dxTabPanel("instance");
     }
 
     // hér er hægt að setja inn fyrir næsta tab
@@ -14,146 +28,60 @@ lvApp.controller("defaultCtrl", function ($scope) {
         } 
     };
 
-    
+    $scope.kronur = function(x) {return kronur(x)};
+
+    //window.scope = $scope;
+
 });
 
 function stillaTabPanel($scope) {
     $scope.docHeight = document.documentElement.clientHeight - 1,
     $scope.tabPanelItems = [
         {
+            icon: "info-circle",
+            iconSize: '20px', iconColor: 'grey',
             title: "Forsíða",
             template: 'tab0'
         },
         {
+            icon: "user",
+            iconSize: '20px', iconColor: 'grey',
             title: "Persónuupplýsingar",
             template: 'tab1',
-            kyn: [
-                { text: "Karl", value: 1 },
-                { text: "Kona", value: 2 }
-            ],
-            currentKyn: 1,
-            aldur: 18,
-            formatAldur: function(value) {
-                return value < 70 ? value + ' ára' : value + ' ára eða eldri'
-            },
-            reykir: [
-                { text: "Já", value: 1 },
-                { text: "Nei", value: 2 }
-            ],
-            currentReykir: 2,
-            maki: [
-                { text: "Já", value: 1 },
-                { text: "Nei", value: 2 }
-            ],
-            currentMaki: 2,
-            currentFjoldiBarna: 0,
-            formatBornTooltip: function(value) {
-                if (value == 0) {
-                    return "Engin börn";
-                }
-                else if (value < 10) {
-                    return value + " börn";
-                }
-                else {
-                    return value + " eða fleiri börn"
-                }
-            },
-            formatBornLabel: function(value) {
-                if (value == 0) {
-                    return "Engin";
-                }
-                else if (value < 10) {
-                    return value;
-                }
-                else {
-                    return value + "+"
-                }
-            }
+            model: Persona,
+            valkostir: Valkostir,
+            formatAldur: fmtAldur,
+            formatBornLabel: fmtBornLabel,
+            formatBornTooltip: fmtBornTooltip
         },
         {
-            title: "Börn",
-            template: 'tab2',
-            
-        },
-        {
+            icon: "money",
+            iconSize: '20px', iconColor: 'grey',
             title: "Lán/útgjöld",
-            template: 'tab3',
-            currentLaun: 0,
-            currentSkammtimaskuldir: 0,
+            template: 'tab2',
+            model: Persona,
+            valkostir: Valkostir,
             currentHusnaedi: 1,
             currentHusnaediskostnadur: 0,
             currentLan: 0,
-            husnaediItems: [
-                { text: "Leigu", value: 1 },
-                { text: "Eigin", value: 2 }
-            ],
-            onHusnaediChanged: function (e) {
-                var newText = '';
-                if (e.value == 'Leigu') {
-                    newText = 'Hver er leigukostnaður þinn á mánuði';
-                    $('#husnaedislan-grp').hide();
-                    $('#husnaedislan').dxSlider('instance').option('value', 1000000);
-                }
-                else {
-                    newText = 'Hver er lánakostnaður þinn á mánuði';
-                }
-                $('#husnaedi-kostnadur-grp').hide();
-                $('#husnaedi-kostnadur-display').text(newText);
-                $('#husnaedi-kostnadur').dxSlider('instance').option('value', 0);
-                $('#husnaedi-kostnadur-grp').fadeIn('fast');
-            },
-            formatSkammtimaskuldirTooltip: {
-                enabled: true,
-                format: function (value) {
-                    if (value == 0) {
-                        return "Engar skuldir";
-                    }
-                    else if (value < 10000000) {
-                        return "~" + numberWithDots(value) + " kr.";
-                    }
-                    else {
-                        return numberWithDots(value) + " kr. eða hærri";
-                    }
-                }
-            },
-            formatSkammtimaskuldirLabel: {
-                visible: true,
-                position: 'bottom',
-                format: function (value) {
-                    if (value == 0) {
-                        return "Engar skuldir";
-                    }
-                    else if (value < 10000000) {
-                        return "~" + numberWithDots(value) + " kr.";
-                    }
-                    else {
-                        return "10 milljónir";
-                    }
-                }
-            },
-            formatLaunTooltip: function (value) {
-                if (value == 0) {
-                    return "Engin laun";
-                }
-                else if (value < 1000000) {
-                    return numberWithDots(value) + " kr.";
-                }
-                else {
-                    return numberWithDots(value) + " kr. eða hærri";
-                }
-            },
-            formatLaunLabel: function (value) {
-                if (value < 1000000) {
-                    return "Engin laun";
-                }
-                else {
-                    return "1 milljón";
-                }
-            },
+            formatLaunLabel: fmtLaunLabel,
+            formatLaunTooltip: fmtLaunTooltip,
+            formatSkammtimaskuldirLabel: fmtSkammtimaskuldirLabel,
+            formatSkammtimaskuldirTooltip: fmtSkammtimaskuldirTooltip,
+            erLeiga: function() {
+                return Persona.husnaedi == 1;
+            }
         },
         {
+            icon: "calculator",
+            iconSize: '18px', iconColor: 'grey',
             title: "Útreikningur",
-            template: 'tab4'
+            template: 'tab3',
+            model: Persona,
+            formatProsentLabel: fmtProsentLabel,
+            formatProsentTooltip: fmtProsentTooltip,
+            formatArLabel: fmtArLabel,
+            formatArTooltip: fmtArTooltip
         }
     ];
 }
@@ -161,6 +89,7 @@ function stillaTabPanel($scope) {
 angular.element(document).ready(function () {
     //debugger;
     angular.bootstrap(document, ['lvApp']);
+    $.fn.editable.defaults.mode = 'popup';
 });
 
 
@@ -171,64 +100,6 @@ angular.element(document).ready(function () {
 
 
 
-
-function initPersonuuppl(itemElement) {
-        itemElement.append($("#firstTab").html());
-
-        //$("#kyn").dxRadioGroup({
-        //    items: ['Karl', 'Kona'],
-        //    width: "300px",
-        //    value: $scope.kyn,
-        //    layout: "horizontal",
-        //    onValueChanged: function (e) {
-        //        debugger;
-        //        $scope.kyn = e.value;
-        //    }
-        //});
-        $("#aldur").dxSlider({
-            min: 18,
-            max: 70,
-            step: 1,
-            value: $scope.aldur,
-            width: 300,
-            hint: "Dragðu stikuna á réttan aldur.",
-            tooltip: {
-                enabled: true,
-                format: function (value) {
-                    if (value < 70) {
-                        return value + " ára";
-                    }
-                    else {
-                        return value + " ára eða eldri";
-                    }
-                }
-            },
-            label: {
-                visible: true,
-                position: 'bottom',
-                format: function (value) {
-                    if (value < 70) {
-                        return value + " ára";
-                    }
-                    else {
-                        return value + "+ ára";
-                    }
-                }
-            }
-        });
-        $("#reykir").dxRadioGroup({
-            items: ['Já', 'Nei'],
-            width: "300px",
-            value: $scope.reykir,
-            layout: "horizontal"
-        });
-        $("#maki").dxRadioGroup({
-            items: ['Já', 'Nei'],
-            width: "300px",
-            value: $scope.maki,
-            layout: "horizontal"
-        });
-    };
 function initUtreikningur(itemElement) {
     itemElement.append($("#fourthTab").html());
     $("#laun-prosenta").dxSlider({
@@ -303,212 +174,6 @@ function initUtreikningur(itemElement) {
 }
 
 
-function initBorn(itemElement) {
-    itemElement.append($("#secondTab").html());
-
-    $("#fjoldi-barna-heima").dxSlider({
-        min: 0,
-        max: 10,
-        step: 1,
-        value: 0,
-        width: 300,
-        hint: "Dragðu stikuna á réttan fjölda barna.",
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value == 0) {
-                    return "Engin";
-                }
-                else if (value < 10) {
-                    return value;
-                }
-                else {
-                    return value + "+"
-                }
-            }
-        }
-    });
-    $("#fjoldi-barna-heima-grp").hide();
-}
-
-function initPeningar(itemElement) {
-    itemElement.append($("#thirdTab").html());
-    $("#husnaedi").dxRadioGroup({
-        items: ['Leigu', 'Eigin'],
-        width: "300px",
-        value: 'Leigu',
-        layout: "horizontal",
-        onValueChanged: function (e) {
-            var newText = "";
-            if (e.value == "Leigu") {
-                newText = "Hver er leigukostnaður þinn á mánuði";
-                $("#husnaedislan-grp").hide();
-                $("#husnaedislan").dxSlider("instance").option("value", 1000000);
-            }
-            else {
-                newText = "Hver er lánakostnaður þinn á mánuði";
-            }
-            $("#husnaedi-kostnadur-grp").hide();
-            $("#husnaedi-kostnadur-display").text(newText);
-            $("#husnaedi-kostnadur").dxSlider("instance").option("value", 0);
-            $("#husnaedi-kostnadur-grp").fadeIn("fast");
-        }
-    });
-    $("#laun").dxSlider({
-        min: 0,
-        max: 1000000,
-        step: 50000,
-        value: 0,
-        width: 300,
-        hint: "Dragðu stikuna á rétt laun.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 0) {
-                    return "Engin laun";
-                }
-                else if (value < 1000000) {
-                    return numberWithDots(value) + " kr.";
-                }
-                else {
-                    return numberWithDots(value) + " kr. eða hærri"
-                }
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value < 1000000) {
-                    return "Engin laun";
-                }
-                else {
-                    return "1 milljón"
-                }
-            }
-        }
-    });
-    $("#skammtimaskuldir").dxSlider({
-        min: 0,
-        max: 10000000,
-        step: 100000,
-        value: 0,
-        width: 300,
-        hint: "Dragðu stikuna á upphæð skammtímaskulda.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 0) {
-                    return "Engar skuldir";
-                }
-                else if (value < 10000000) {
-                    return "~" + numberWithDots(value) + " kr.";
-                }
-                else {
-                    return numberWithDots(value) + " kr. eða hærri";
-                }
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value == 0) {
-                    return "Engar skuldir";
-                }
-                else if (value < 10000000) {
-                    return "~" + numberWithDots(value) + " kr.";
-                }
-                else {
-                    return "10 milljónir";
-                }
-            }
-        }
-    });
-    $("#husnaedi-kostnadur").dxSlider({
-        min: 0,
-        max: 400000,
-        step: 10000,
-        value: 0,
-        width: 300,
-        hint: "Dragðu stikuna á kostnaðinn.",
-        onValueChanged: function(e) {
-            var leigir = $("#husnaedi").dxRadioGroup("option", "value") == "Leigu"  ? true : false;
-            if (e.value > 0 && !leigir) {
-                $("#husnaedislan-grp").fadeIn("fast");
-            }
-            else {
-                $("#husnaedislan-grp").fadeOut("slow");
-            }
-        },
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 0) {
-                    return "Enginn húsnæðiskostnaður";
-                }
-                else if (value < 1000000) {
-                    return numberWithDots(value) + " kr.";
-                }
-                else {
-                    return numberWithDots(value) + " kr. eða hærri";
-                }
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value < 400000) {
-                    return "Enginn";
-                }
-                else {
-                    return "400.000 kr."
-                }
-            }
-        }
-    });
-    $("#husnaedislan").dxSlider({
-        min: 1000000,
-        max: 50000000,
-        step: 500000,
-        value: 1000000,
-        width: 300,
-        hint: "Dragðu stikuna réttu lánsupphæðina.",
-        tooltip: {
-            enabled: true,
-            format: function (value) {
-                if (value == 1000000) {
-                    return "1 milljón eða minna";
-                }
-                else if (value < 50000000) {
-                    return "~" + numberWithDots(value) + " kr.";
-                }
-                else {
-                    return numberWithDots(value) + " kr. eða hærri"
-                }
-            }
-        },
-        label: {
-            visible: true,
-            position: 'bottom',
-            format: function (value) {
-                if (value < 50000000) {
-                    return "1 milljón";
-                }
-                else {
-                    return "50 milljónir";
-                }
-            }
-        }
-    });
-    $("#husnaedislan-grp").hide();
-}
-
-function initForsida(itemElement) {
-    itemElement.append($("#fifthTab").html());
-}
 
 function nextButton(itemElement, id, text) {
     itemElement.append($("<br>"));
@@ -529,32 +194,6 @@ function nextButton(itemElement, id, text) {
     $(selectItemId).css("margin-left", centerMargin);
 }
 
-var dataItems = [
-{
-    html: getTitle('info', 'Forsíða'),
-    data: {
-    }
-},
-{
-    html: getTitle('users', 'Persónuupplýsingar'),
-    data: {
-    }
-},
-{
-    html: getTitle('child', 'Börn'),
-    data: {
-    }
-},
-{
-    html: getTitle('money', 'Lán/útgjöld'),
-    data: {
-    }
-},
-{
-    html: getTitle('calculator', 'Útreikningur'),
-    data: {
-    }
-}];
 
 
 function getTabPanelObject($scope) {

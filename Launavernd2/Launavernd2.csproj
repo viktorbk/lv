@@ -154,6 +154,7 @@
     <Content Include="DX\js\globalize.min.js" />
     <Content Include="DX\js\jquery-1.11.2.min.js" />
     <Content Include="DX\js\jquery-2.1.3.min.js" />
+    <Content Include="DX\js\jquery-2.1.4.min.js" />
     <Content Include="DX\js\knockout-3.3.0.js" />
     <Content Include="DX\layouts\Desktop\DesktopLayout.css" />
     <Content Include="DX\layouts\Desktop\DesktopLayout.html" />
@@ -204,6 +205,9 @@
     <Content Include="DX\font-awesome-4.3.0\scss\_rotated-flipped.scss" />
     <Content Include="DX\font-awesome-4.3.0\scss\_stacked.scss" />
     <Content Include="DX\font-awesome-4.3.0\scss\_variables.scss" />
+    <Content Include="DX\js\angular-sanitize.min.js.map" />
+    <Content Include="DX\js\angular.min.js.map" />
+    <Content Include="DX\js\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -215,7 +219,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_calc.js" />
+    <Content Include="Scripts\_data.js" />
+    <Content Include="Scripts\_format.js" />
     <Content Include="Scripts\_main.js" />
+    <Content Include="Scripts\_persona.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\_utils.js" />
     <Content Include="Web.config" />
