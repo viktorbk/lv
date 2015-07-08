@@ -148,6 +148,8 @@
     <Content Include="DX\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="DX\globalize-de.js" />
     <Content Include="DX\images\logo.png" />
+    <Content Include="DX\img\clear.png" />
+    <Content Include="DX\img\loading.gif" />
     <Content Include="DX\index.css" />
     <Content Include="DX\index.html" />
     <Content Include="DX\index.js" />
