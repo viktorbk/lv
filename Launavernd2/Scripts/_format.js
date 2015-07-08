@@ -1,4 +1,3 @@
-
 function fmtAldur(value) {
     return value < 70 ? value + ' ára' : value + ' ára eða eldri'
 }

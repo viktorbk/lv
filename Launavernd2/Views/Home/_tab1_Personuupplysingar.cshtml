@@ -55,10 +55,11 @@
 		<td>
 			<div id="maki-grp" class="grp">
 				<p id="maki-display">Áttu maka?</p>
-				<div dx-radio-group="{
+                <div dx-radio-group="{
 					items: valkostir.jaNei,
 					layout: 'horizontal',
 					valueExpr: 'value',
+                    onValueChanged: updatedrasl,
 					bindingOptions: {
 						value: 'model.maki'
 					}

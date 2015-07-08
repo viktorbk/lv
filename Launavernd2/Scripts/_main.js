@@ -28,6 +28,10 @@ lvApp.controller("defaultCtrl", function ($scope) {
             initEditables();
     }
 
+    $scope.updatedrasl = function (e) {
+        initEditables();
+    }
+
     $scope.tabInit = function(e) {
         window.tabPanel = $("#tabPanel").dxTabPanel("instance");
     }
@@ -103,14 +107,6 @@ angular.element(document).ready(function () {
     angular.bootstrap(document, ['lvApp']);
     $.fn.editable.defaults.mode = 'popup';
 });
-
-
-
-
-
-
-
-
 
 function initUtreikningur(itemElement) {
     itemElement.append($("#fourthTab").html());
@@ -205,8 +201,6 @@ function nextButton(itemElement, id, text) {
     var centerMargin = (docWidth / 2) - (divWidth / 2) - 30;
     $(selectItemId).css("margin-left", centerMargin);
 }
-
-
 
 function getTabPanelObject($scope) {
     return {
