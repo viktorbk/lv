@@ -145,6 +145,7 @@
     <Content Include="DX\font-awesome-4.3.0\css\font-awesome.min.css" />
     <Content Include="DX\font-awesome-4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="DX\font-awesome-4.3.0\HELP-US-OUT.txt" />
+    <Content Include="DX\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="DX\globalize-de.js" />
     <Content Include="DX\images\logo.png" />
     <Content Include="DX\index.css" />
@@ -219,6 +220,10 @@
     <Content Include="DX\js\angular-sanitize.min.js.map" />
     <Content Include="DX\js\angular.min.js.map" />
     <Content Include="DX\js\jquery-2.1.4.min.map" />
+    <Content Include="DX\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="DX\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="DX\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="DX\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\launavernd.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
