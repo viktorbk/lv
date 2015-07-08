@@ -20,10 +20,8 @@ namespace Launavernd2.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Test()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -1,9 +1,21 @@
 ﻿TAB_PERSONUUPPL = 1;
 TAB_UTREIKNINGUR = 3;
 
-var lvApp = angular.module('lvApp', ['dx']);
+var lvApp = angular.module('lvApp', ['dx', 'ngMaterial']);
 lvApp.controller("defaultCtrl", function ($scope) {
     
+    $scope.data = {
+        group1: 'Banana',
+        group2: '2',
+        group3: 'avatar-1'
+    };
+    $scope.radioData = [
+          { label: '1', value: 1 },
+          { label: '2', value: 2 },
+          { label: '3', value: '3', isDisabled: true },
+          { label: '4', value: '4' }
+    ];
+
     stillaTabPanel($scope);
 
     $scope.tabChanged = function (e) {

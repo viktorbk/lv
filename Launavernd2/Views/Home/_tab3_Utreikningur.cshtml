@@ -1,0 +1,197 @@
+﻿
+<table style="float:left;">
+    <tr style="border: 1px solid silver">
+        <td colspan="2">
+            <span class="bold">Forsendur</span>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:200px;">Kyn</td>
+        <td style="width:150px">{{model.kynTxt()}}</td>
+    </tr>
+    <tr>
+        <td>Aldur</td>
+        <td><a href="#" id="xaldur" title="Aldur">{{model.aldur}}</a></td>
+
+    </tr>
+    <tr>
+        <td>Reykir?</td>
+        <td>{{model.jaNei(model.reykir)}}</td>
+    </tr>
+    <tr>
+        <td>Maki?</td>
+        <td>{{model.jaNei(model.maki)}}</td>
+    </tr>
+    <tr>
+        <td>Börn á framfæri</td>
+        <td><a href="#" id="xborn" title="Börn á framfæri">{{model.fjoldiBarna}}</a></td>
+    </tr>
+    <tr>
+        <td>Laun eftir skatt</td>
+        <td><a href="#" id="xlaun" title="Laun eftir skatt">{{model.laun}}</a></td>
+    </tr>
+    <tr>
+        <td>Skammtímaskuldir</td>
+        <td>{{model.skammtimaSkuldir}}</td>
+    </tr>
+    <tr>
+        <td>Húsnæði</td>
+        <td>{{model.husnaediTxt()}}</td>
+    </tr>
+    <tr>
+        <td>{{model.husnaediLabel()}}</td>
+        <td>{{model.husnaediUpphaed()}}</td>
+    </tr>
+</table>
+
+<table>
+    <tr style="border: 1px solid silver">
+        <td colspan="2">
+            <span class="bold">Kostnaður á mánuði</span>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:200px;">Matur og hreinlætisvörur</td>
+        <td class="right">{{model.kostnadurTxt(0)}}</td>
+    </tr>
+    <tr>
+        <td>Föt og skór</td>
+        <td class="right">{{model.kostnadurTxt(1)}}</td>
+    </tr>
+    <tr>
+        <td>Læknis- og lyfjakostnaður</td>
+        <td class="right">{{model.kostnadurTxt(2)}}</td>
+    </tr>
+    <tr>
+        <td>Tómstundir</td>
+        <td class="right">{{model.kostnadurTxt(3)}}</td>
+    </tr>
+    <tr>
+        <td>Samskipti</td>
+        <td class="right">{{model.kostnadurTxt(4)}}</td>
+    </tr>
+    <tr>
+        <td>Önnur þjónusta</td>
+        <td class="right">{{model.kostnadurTxt(5)}}</td>
+    </tr>
+    <tr>
+        <td>Samgöngur</td>
+        <td class="right">{{model.kostnadurTxt(6)}}</td>
+    </tr>
+    <tr>
+        <td>Afborganir</td>
+        <td class="right">{{model.afborganirTxt()}}</td>
+    </tr>
+    <tr>
+        <td><span class="bold">Samtals</span></td>
+        <td class="bold right">{{model.heildarKostnTxt()}}</td>
+    </tr>
+</table>
+
+<table class="tblRadstofun">
+    <tr>
+        <td style="width:200px">
+            <span class="bold">Til ráðstöfunar á mánuði</span>
+        </td>
+        <td>
+            <span class="bold">{{model.tilRadstofunar()}}</span>
+        </td>
+    </tr>
+</table>
+
+<table class="tafla4">
+    <tr>
+        <td>
+            <div id="laun-prosenta-grp" class="grp">
+                <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
+                <div dx-slider="{
+                                    min: 40,
+                                    max: 100,
+                                    step: 10,
+                                    bindingOptions: {
+                                        value: 'model.vernd'
+                                    },
+                                    width: 300,
+                                    hint: 'Dragðu stikuna á rétta prósentu.',
+                                    label: {
+                                        visible: true,
+                                        position: 'bottom',
+                                        format: formatProsentLabel
+                                    },
+                                    tooltip: {
+                                        enabled: true,
+                                        format: formatProsentTooltip
+                                    }
+                                }"></div>
+            </div>
+        </td>
+        <td>
+            <div id="laun-ar-grp" class="grp">
+                <p id="laun-ar-display">Í hversu mörg ár viltu tryggja launin?</p>
+                <div dx-slider="{
+                                    min: 1,
+                                    max: 5,
+                                    step: 1,
+                                    bindingOptions: {
+                                        value: 'model.verndAr'
+                                    },
+                                    width: 300,
+                                    hint: 'Dragðu stikuna á rétt ár.',
+                                    label: {
+                                        visible: true,
+                                        position: 'bottom',
+                                        format: formatArLabel
+                                    },
+                                    tooltip: {
+                                        enabled: true,
+                                        format: formatArTooltip
+                                    }
+                                }"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table class="tafla4">
+    <tr>
+        <td style="width:200px">
+            Reiknuð líftrygging:
+        </td>
+        <td>{{$parent.kronur(model.liftrygging())}}</td>
+        <td>
+            Iðgjald á mánuði er:
+        </td>
+        <td>{{$parent.kronur(model.lifIdgjald())}}</td>
+    </tr>
+    <tr>
+        <td style="width:200px">
+            Reiknuð sjúkdómatrygging:
+        </td>
+        <td>{{$parent.kronur(model.sjukdomatrygging())}}</td>
+        <td>
+            Iðgjald á mánuði er:
+        </td>
+        <td>{{$parent.kronur(model.sjukdomaIdgjald())}}</td>
+    </tr>
+    <tr>
+        <td style="width:200px"></td>
+        <td></td>
+        <td>
+            <span class="bold">Samtals iðgjöld á mánuði:</span>
+        </td>
+        <td><span class="bold">{{$parent.kronur(model.idgjold())}}</span></td>
+    </tr>
+</table>
+
+<table style="margin-top:25px">
+    <tr>
+        <td style="width:100px">
+            <div dx-button="{
+                                text: 'Senda inn rafræna umsókn',
+                                onClick: buttonClicked
+                            }"></div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+

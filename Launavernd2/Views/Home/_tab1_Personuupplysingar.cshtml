@@ -1,0 +1,96 @@
+﻿<table class="tafla">
+    <tr>
+        <td>
+            <div id="kyn-grp" class="grp">
+                <p id="kyn-display">Kyn?</p>
+                <div dx-radio-group="{
+                                        items: valkostir.kyn,
+                                        layout: 'horizontal',
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'model.kyn'
+                                        }
+                                    }"></div>
+            </div>
+        </td>
+        <td>
+            <div id="aldur-grp" class="grp">
+                <p id="aldur-display">Aldur?</p>
+                <div dx-slider="{
+                                        min: 18,
+                                        max: 70,
+                                        step: 1,
+                                        hint: 'dragðu stikuna á réttan aldur.',
+                                        bindingOptions: {
+                                            value: 'model.aldur'
+                                        },
+                                        label: {
+                                            visible: true,
+                                            position: 'bottom',
+                                            format: formatAldur
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            format: formatAldur
+                                        }
+                                     }"></div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="reykir-grp" class="grp">
+                <p id="reykir-display">Reykir þú?</p>
+                <div dx-radio-group="{
+                                        items: valkostir.jaNei,
+                                        layout: 'horizontal',
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'model.reykir'
+                                        }
+                                    }"></div>
+            </div>
+        </td>
+        <td>
+            <div id="maki-grp" class="grp">
+                <p id="maki-display">Áttu maka?</p>
+                <div dx-radio-group="{
+                                        items: valkostir.jaNei,
+                                        layout: 'horizontal',
+                                        valueExpr: 'value',
+                                        bindingOptions: {
+                                            value: 'model.maki'
+                                        }
+                                    }"></div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="fjoldi-barna-grp" class="grp">
+                <p id="fjoldi-barna-display">Hversu mörg börn eru á þinni framfærslu?</p>
+                <div dx-slider="{
+                                    min: 0,
+                                    max: 10,
+                                    step: 1,
+                                    width: 300,
+                                    bindingOptions: {
+                                        value: 'model.fjoldiBarna'
+                                    },
+                                    hint: 'Dragðu stikuna á réttan fjölda barna.',
+                                    label: {
+                                        visible: true,
+                                        position: 'bottom',
+                                        format: formatBornLabel
+                                    },
+                                    tooltip: {
+                                        enabled: true,
+                                        format: formatBornTooltip
+                                    }
+                                }"></div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
