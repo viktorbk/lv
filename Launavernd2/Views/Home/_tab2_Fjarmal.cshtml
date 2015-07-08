@@ -4,48 +4,48 @@
             <div id="laun-grp" class="grp">
                 <p id="laun-display">Hver eru mánaðarleg laun þín eftir skatta?</p>
                 <div id="laun" dx-slider="{
-                                        min: 0,
-                                        max: 1000000,
-                                        step: 50000,
-                                        bindingOptions: {
-                                            value: 'model.laun'
-                                        },
-                                        width: 300,
-                                        hint: 'Dragðu stikuna á rétt laun.',
-                                        label: {
-                                            visible: true,
-                                            position: 'bottom',
-                                            format: formatLaunLabel
-                                        },
-                                        tooltip: {
-                                            enabled: true,
-                                            format: formatLaunTooltip
-                                        }
-                                }"></div>
+                    min: 0,
+                    max: 1000000,
+                    step: 50000,
+                    bindingOptions: {
+                        value: 'model.laun'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétt laun.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatLaunLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatLaunTooltip
+                    }
+            }"></div>
             </div>
         </td>
         <td>
             <div id="skammtimaskuldir-grp">
                 <p id="skammtimaskuldir-display">Hvað greiðir þú af skammtímaskuldum á mánuði?</p>
                 <div id="skammtimaskuldir" dx-slider="{
-                                        min: 0,
-                                        max: 500000,
-                                        step: 10000,
-                                        bindingOptions: {
-                                            value: 'model.skammtimaSkuldir'
-                                        },
-                                        width: 300,
-                                        hint: 'Dragðu stikuna á upphæð skammtímaskulda.',
-                                        label: {
-                                            visible: true,
-                                            position: 'bottom',
-                                            format: formatSkammtimaskuldirLabel
-                                        },
-                                        tooltip: {
-                                            enabled: true,
-                                            format: formatSkammtimaskuldirTooltip
-                                        }
-                                }"></div>
+                    min: 0,
+                    max: 500000,
+                    step: 10000,
+                    bindingOptions: {
+                        value: 'model.skammtimaSkuldir'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á upphæð skammtímaskulda.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatSkammtimaskuldirLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatSkammtimaskuldirTooltip
+                    }
+                 }"></div>
             </div>
         </td>
     </tr>
@@ -54,15 +54,15 @@
             <div id="husnaedi-grp" class="grp">
                 <p id="husnaedi-display">Býrðu í leiguhúsnæði eða eiginhúsnæði?</p>
                 <div dx-radio-group="{
-                                        items: valkostir.husnaedi,
-                                        width: '300px',
-                                        layout: 'horizontal',
-                                        onValueChanged: onHusnaediChanged,
-                                        valueExpr: 'value',
-                                        bindingOptions: {
-                                            value: 'model.husnaedi'
-                                        }
-                                    }"></div>
+                    items: valkostir.husnaedi,
+                    width: '300px',
+                    layout: 'horizontal',
+                    onValueChanged: onHusnaediChanged,
+                    valueExpr: 'value',
+                    bindingOptions: {
+                        value: 'model.husnaedi'
+                    }
+                }"></div>
             </div>
         </td>
         <td></td>
@@ -72,46 +72,46 @@
             <div id="husnaedi-kostnadur-grp" class="grp" ng-show="erLeiga()">
                 <p id="husnaedi-kostnadur-display">Hver er leigukostnaður þinn á mánuði?</p>
                 <div dx-slider="{
-                                        min: 0,
-                                        max: 300000,
-                                        step: 10000,
-                                        bindingOptions: {
-                                            value: 'model.leiga'
-                                        },
-                                        width: 300,
-                                        hint: 'Dragðu stikuna á upphæð leigu á mánuði.',
-                                        label: {
-                                            visible: true,
-                                            position: 'bottom',
-                                            format: formatSkammtimaskuldirLabel
-                                        },
-                                        tooltip: {
-                                            enabled: true,
-                                            format: formatSkammtimaskuldirTooltip
-                                        }
-                                }"></div>
+                    min: 0,
+                    max: 300000,
+                    step: 10000,
+                    bindingOptions: {
+                        value: 'model.leiga'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á upphæð leigu á mánuði.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatSkammtimaskuldirLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatSkammtimaskuldirTooltip
+                    }
+                }"></div>
             </div>
             <div id="husnaedislan-grp" class="grp" ng-hide="erLeiga()">
                 <p id="husnaedislan-display">Hverjar eru eftirstöðvar húsnæðislánsins?</p>
                 <div dx-slider="{
-                                        min: 0,
-                                        max: 10000000,
-                                        step: 100000,
-                                        bindingOptions: {
-                                            value: 'model.husnaedisLan'
-                                        },
-                                        width: 300,
-                                        hint: 'Dragðu stikuna á upphæð skammtímaskulda.',
-                                        label: {
-                                            visible: true,
-                                            position: 'bottom',
-                                            format: formatSkammtimaskuldirLabel
-                                        },
-                                        tooltip: {
-                                            enabled: true,
-                                            format: formatSkammtimaskuldirTooltip
-                                        }
-                                }"></div>
+                    min: 0,
+                    max: 10000000,
+                    step: 100000,
+                    bindingOptions: {
+                        value: 'model.husnaedisLan'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á upphæð skammtímaskulda.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatSkammtimaskuldirLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatSkammtimaskuldirTooltip
+                    }
+                }"></div>
             </div>
         </td>
         <td></td>

@@ -47,36 +47,36 @@
 <table>
     <tr style="border: 1px solid silver">
         <td colspan="2">
-            <span class="bold">Kostnaður á mánuði</span>
+            <span class="bold">Kostnaður á mánuði<a href="#" style="padding-left:35px" id="endurstillaGildi">Endurstilla gildi</a></span>
         </td>
     </tr>
     <tr>
         <td style="width:200px;">Matur og hreinlætisvörur</td>
-        <td class="right">{{model.kostnadurTxt(0)}}</td>
+        <td class="right"><a href="#" id="xmatur">{{model.kostnadurTxt(0)}}</a></td>
     </tr>
     <tr>
         <td>Föt og skór</td>
-        <td class="right">{{model.kostnadurTxt(1)}}</td>
+        <td class="right"><a href="#" id="xfot">{{model.kostnadurTxt(1)}}</a></td>
     </tr>
     <tr>
         <td>Læknis- og lyfjakostnaður</td>
-        <td class="right">{{model.kostnadurTxt(2)}}</td>
+        <td class="right"><a href="#" id="xlaeknis">{{model.kostnadurTxt(2)}}</a></td>
     </tr>
     <tr>
         <td>Tómstundir</td>
-        <td class="right">{{model.kostnadurTxt(3)}}</td>
+        <td class="right"><a href="#" id="xtomstundir">{{model.kostnadurTxt(3)}}</a></td>
     </tr>
     <tr>
         <td>Samskipti</td>
-        <td class="right">{{model.kostnadurTxt(4)}}</td>
+        <td class="right"><a href="#" id="xsamskipti">{{model.kostnadurTxt(4)}}</a></td>
     </tr>
     <tr>
         <td>Önnur þjónusta</td>
-        <td class="right">{{model.kostnadurTxt(5)}}</td>
+        <td class="right"><a href="#" id="xþjonusta">{{model.kostnadurTxt(5)}}</a></td>
     </tr>
     <tr>
         <td>Samgöngur</td>
-        <td class="right">{{model.kostnadurTxt(6)}}</td>
+        <td class="right"><a href="#" id="xsamgongur">{{model.kostnadurTxt(6)}}</a></td>
     </tr>
     <tr>
         <td>Afborganir</td>
@@ -105,48 +105,48 @@
             <div id="laun-prosenta-grp" class="grp">
                 <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
-                                    min: 40,
-                                    max: 100,
-                                    step: 10,
-                                    bindingOptions: {
-                                        value: 'model.vernd'
-                                    },
-                                    width: 300,
-                                    hint: 'Dragðu stikuna á rétta prósentu.',
-                                    label: {
-                                        visible: true,
-                                        position: 'bottom',
-                                        format: formatProsentLabel
-                                    },
-                                    tooltip: {
-                                        enabled: true,
-                                        format: formatProsentTooltip
-                                    }
-                                }"></div>
+                    min: 40,
+                    max: 100,
+                    step: 10,
+                    bindingOptions: {
+                        value: 'model.vernd'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétta prósentu.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatProsentLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatProsentTooltip
+                    }
+                }"></div>
             </div>
         </td>
         <td>
             <div id="laun-ar-grp" class="grp">
                 <p id="laun-ar-display">Í hversu mörg ár viltu tryggja launin?</p>
                 <div dx-slider="{
-                                    min: 1,
-                                    max: 5,
-                                    step: 1,
-                                    bindingOptions: {
-                                        value: 'model.verndAr'
-                                    },
-                                    width: 300,
-                                    hint: 'Dragðu stikuna á rétt ár.',
-                                    label: {
-                                        visible: true,
-                                        position: 'bottom',
-                                        format: formatArLabel
-                                    },
-                                    tooltip: {
-                                        enabled: true,
-                                        format: formatArTooltip
-                                    }
-                                }"></div>
+                    min: 1,
+                    max: 5,
+                    step: 1,
+                    bindingOptions: {
+                        value: 'model.verndAr'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétt ár.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatArLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatArTooltip
+                    }
+                }"></div>
             </div>
         </td>
     </tr>
@@ -187,9 +187,9 @@
     <tr>
         <td style="width:100px">
             <div dx-button="{
-                                text: 'Senda inn rafræna umsókn',
-                                onClick: buttonClicked
-                            }"></div>
+                text: 'Senda inn rafræna umsókn',
+                onClick: buttonClicked
+            }"></div>
         </td>
         <td></td>
     </tr>

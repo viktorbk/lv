@@ -15,12 +15,15 @@ function onHusnaediChanged(e) {
 }
 
 function initEditables() {
-     $('#xaldur').editable({
-        type: 'text',
-        value: Persona.aldur,
-        success: function(response, newValue) {
-            Persona.aldur = newValue;
-        }
+    $("#endurstillaGildi").click(function () {
+        Framfaersla = FramfaerslaOriginal;
+    });
+    $('#xaldur').editable({
+    type: 'text',
+    value: Persona.aldur,
+    success: function(response, newValue) {
+        Persona.aldur = newValue;
+    }
     });   
     $('#xborn').editable({
         type: 'text',
@@ -39,5 +42,96 @@ function initEditables() {
             window.tabPanel.repaint();
             initEditables();
         }
-    });  
+    });
+    $('#xmatur').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(0),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(0, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xfot').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(1),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(1, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xlaeknis').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(2),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(2, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xtomstundir').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(3),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(3, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xsamskipti').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(4),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(4, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xþjonusta').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(5),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(5, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+    $('#xsamgongur').editable({
+        type: 'text',
+        value: saekjaFramfaersluGildi(6),
+        success: function (response, newValue) {
+            breytaFramfaersluGildi(6, newValue);
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
+}
+
+function breytaFramfaersluGildi(gildiNr, nyttGildi) {
+    var bornIndex = Math.min(5, Persona.fjoldiBarna);
+    if (Persona.maki == 2) {
+        var gamlaGildi = Framfaersla.Einstaklingur[bornIndex][gildiNr];
+        var munur = nyttGildi - gamlaGildi;
+        Framfaersla.Einstaklingur[bornIndex][gildiNr] = nyttGildi;
+        Framfaersla.Einstaklingur[bornIndex][7] += munur;
+    }
+    else {
+        var gamlaGildi = Framfaersla.Hjon[bornIndex][gildiNr];
+        var munur = nyttGildi - gamlaGildi;
+        Framfaersla.Hjon[bornIndex][gildiNr] = nyttGildi;
+        Framfaersla.Hjon[bornIndex][7] += munur;
+    }
+}
+
+function saekjaFramfaersluGildi(gildiNr) {
+    var bornIndex = Math.min(5, Persona.fjoldiBarna);
+    var gildi = 0;
+    if (Persona.maki == 2) {
+        gildi = Framfaersla.Einstaklingur[bornIndex][gildiNr];
+    }
+    else {
+        gildi = Framfaersla.Hjon[bornIndex][gildiNr];
+    }
+    return gildi;
 }

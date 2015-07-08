@@ -16,11 +16,12 @@ var Persona = {
 	leiga: 0,
 	husnaediLabel: function() {return this.erLeiga() ? 'Leiga á mánuði' : 'Afborganir á mánuði';},
 	husnaediUpphaed: function() {return this.erLeiga() ? this.leiga : this.husnaedisLan;},
-	kostnadur: function() {
+	kostnadur: function () {
+	    var bornIndex = Math.min(5, this.fjoldiBarna);
 		if (this.maki == 2)
-			return Framfaersla.Einstaklingur[this.fjoldiBarna];
+			return Framfaersla.Einstaklingur[bornIndex];
 		else
-			return Framfaersla.Hjon[this.fjoldiBarna];
+			return Framfaersla.Hjon[bornIndex];
 	},
 	kostnadurTxt: function(nr) {
 		var kostn = this.kostnadur();
@@ -41,10 +42,10 @@ var Persona = {
 	heildarKostn: function() {
 		var svar = this.kostnadur()[7] + this.skammtimaSkuldir;
 		svar += this.afborganir();
-		return svar;		
+		return svar;
 	},
 	heildarKostnTxt: function() {
-		return kronur(this.heildarKostn());		
+		return kronur(this.heildarKostn());
 	},
 	tilRadstofunar: function() {
 		var svar = this.laun - this.heildarKostn();
