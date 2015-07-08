@@ -125,7 +125,7 @@
     <Content Include="DX\application1.config.js" />
     <Content Include="DX\application1.shared.config.js" />
     <Content Include="DX\css\angular-material.css" />
-    <Content Include="DX\css\bootstrap3-3.0.0.min.js" />
+    <Content Include="DX\css\bootstrap3.min.css" />
     <Content Include="DX\css\bootstrap3-editable.css" />
     <Content Include="DX\css\dx.android5.light.css" />
     <Content Include="DX\css\dx.common.css" />
@@ -157,7 +157,7 @@
     <Content Include="DX\js\angular-material.min.js" />
     <Content Include="DX\js\angular-sanitize.min.js" />
     <Content Include="DX\js\angular.min.js" />
-    <Content Include="DX\js\bootstrap3-3.0.0.min.js" />
+    <Content Include="DX\js\bootstrap3.min.js" />
     <Content Include="DX\js\bootstrap3-editable.min.js" />
     <Content Include="DX\js\dx.all.debug.js" />
     <Content Include="DX\js\dx.all.js" />
