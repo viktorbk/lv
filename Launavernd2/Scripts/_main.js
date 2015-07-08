@@ -28,7 +28,7 @@ lvApp.controller("defaultCtrl", function ($scope) {
             initEditables();
     }
 
-    $scope.updatedrasl = function (e) {
+    $scope.updateFramfaersla = function (e) {
         initEditables();
     }
 

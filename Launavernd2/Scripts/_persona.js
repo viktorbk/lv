@@ -53,8 +53,10 @@ var Persona = {
 	},
 	vernd: 50,
 	verndAr: 2,
+	sjukdomaVernd: 80,
+    sjukdomaVerndAr: 2,
 	liftrygging: function() {
-		var svar = this.laun * this.vernd/100.0;
+		var svar = this.laun * this.vernd / 100.0;
 		svar = svar * this.verndAr * 12;
 		return svar;
 	},
@@ -67,8 +69,8 @@ var Persona = {
 		return upph;
 	},
 	sjukdomatrygging: function() {
-		var svar = this.laun * 0.8;
-		svar = svar * this.verndAr * 12;	
+		var svar = this.laun * this.sjukdomaVernd / 100.0;
+		svar = svar * this.sjukdomaVerndAr * 12;	
 		return svar;
 	},
 	sjukdomaIdgjald: function() {
