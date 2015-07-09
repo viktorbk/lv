@@ -18,6 +18,10 @@ function initEditables() {
     $("#endurstillaGildi").click(function () {
         Framfaersla = FramfaerslaOriginal;
     });
+
+    // eyði út ediables ef til fyrir
+    $(".editable").each(function(obj) {$(this).editable('destroy')})
+
     $('#xaldur').editable({
     type: 'text',
     value: Persona.aldur,
@@ -45,7 +49,7 @@ function initEditables() {
     });
     $('#xmatur').editable({
         type: 'text',
-        value: saekjaFramfaersluGildi(0),
+        value: Persona.kostnadur()[0],
         success: function (response, newValue) {
             breytaFramfaersluGildi(0, newValue);
             window.tabPanel.repaint();

@@ -1,12 +1,12 @@
 ﻿
 <table style="float:left;">
-    <tr style="border: 1px solid silver">
+    <tr class="borderUD">
         <td colspan="2">
             <span class="bold">Forsendur</span>
         </td>
     </tr>
     <tr>
-        <td style="width:200px;">Kyn</td>
+        <td style="width:260px;">Kyn</td>
         <td style="width:150px">{{model.kynTxt()}}</td>
     </tr>
     <tr>
@@ -45,13 +45,13 @@
 </table>
 
 <table>
-    <tr style="border: 1px solid silver">
+    <tr class="borderUD">
         <td colspan="2">
-            <span class="bold">Kostnaður á mánuði<a href="#" style="padding-left:35px" id="endurstillaGildi">Endurstilla gildi</a></span>
+            <span class="bold">Kostnaður á mánuði<a href="#" style="float:right" id="endurstillaGildi">Endurstilla gildi</a></span>
         </td>
     </tr>
     <tr>
-        <td style="width:200px;">Matur og hreinlætisvörur</td>
+        <td style="width:260px;">Matur og hreinlætisvörur</td>
         <td class="right"><a href="#" id="xmatur">{{model.kostnadurTxt(0)}}</a></td>
     </tr>
     <tr>
@@ -79,7 +79,7 @@
         <td class="right"><a href="#" id="xsamgongur">{{model.kostnadurTxt(6)}}</a></td>
     </tr>
     <tr>
-        <td>Afborganir</td>
+        <td>Húsnæði og skammtímaskuldir</td>
         <td class="right">{{model.afborganirTxt()}}</td>
     </tr>
     <tr>
@@ -224,7 +224,7 @@
         <td>
             Iðgjald á mánuði er:
         </td>
-        <td>{{$parent.kronur(model.lifIdgjald())}}</td>
+        <td class="right">{{$parent.kronur(model.lifIdgjald())}}</td>
     </tr>
     <tr>
         <td style="width:200px">
@@ -234,7 +234,7 @@
         <td>
             Iðgjald á mánuði er:
         </td>
-        <td>{{$parent.kronur(model.sjukdomaIdgjald())}}</td>
+        <td class="right">{{$parent.kronur(model.sjukdomaIdgjald())}}</td>
     </tr>
     <tr>
         <td style="width:200px"></td>
@@ -242,7 +242,7 @@
         <td>
             <span class="bold">Samtals iðgjöld á mánuði:</span>
         </td>
-        <td><span class="bold">{{$parent.kronur(model.idgjold())}}</span></td>
+        <td class="right"><span class="bold">{{$parent.kronur(model.idgjold())}}</span></td>
     </tr>
 </table>
 
