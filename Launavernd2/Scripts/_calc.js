@@ -27,6 +27,8 @@ function initEditables() {
     value: Persona.aldur,
     success: function(response, newValue) {
         Persona.aldur = newValue;
+        window.tabPanel.repaint();
+        initEditables();
     }
     });   
     $('#xborn').editable({
