@@ -1,10 +1,7 @@
 var Persona = {
 	kyn: 1,
-	kynTxt: function() { return this.kyn == 1 ? 'Karl' : 'Kona';},
 	aldur: 20,
-	aldurTxt: function() {return this.aldur + ' ára'},
 	reykir: 2,
-	jaNei: function(svar) { return svar == 1 ? 'Já' : 'Nei';},
 	maki: 2,
 	fjoldiBarna: 0,
 	laun: 150000,
@@ -23,11 +20,6 @@ var Persona = {
 		else
 			return Framfaersla.Hjon[bornIndex];
 	},
-	kostnadurTxt: function(nr) {
-		var kostn = this.kostnadur();
-		var svar = numberWithDots(kostn[nr]);
-		return svar + ' kr.';
-	},
 	afborganir: function() {
 		var svar = this.skammtimaSkuldir;
 		if (this.erLeiga())
@@ -36,16 +28,10 @@ var Persona = {
 			svar += this.husnaedisLan;
 		return svar;
 	},
-	afborganirTxt: function() {
-		return kronur(this.afborganir());
-	},
 	heildarKostn: function() {
 		var svar = this.kostnadur()[7] + this.skammtimaSkuldir;
 		svar += this.afborganir();
 		return svar;
-	},
-	heildarKostnTxt: function() {
-		return kronur(this.heildarKostn());
 	},
 	tilRadstofunar: function() {
 		var svar = this.laun - this.heildarKostn();

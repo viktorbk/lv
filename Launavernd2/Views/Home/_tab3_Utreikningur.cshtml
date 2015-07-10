@@ -7,20 +7,20 @@
     </tr>
     <tr>
         <td style="width:260px;">Kyn</td>
-        <td style="width:150px">{{model.kynTxt()}}</td>
+        <td style="width:150px">{{model.kyn | kyn}}</td>
     </tr>
     <tr>
         <td>Aldur</td>
-        <td><a href="#" id="xaldur" title="Aldur">{{model.aldur}}</a></td>
+        <td><a href="#" id="xaldur" title="Aldur">{{model.aldur | aldur}}</a></td>
 
     </tr>
     <tr>
         <td>Reykir?</td>
-        <td>{{model.jaNei(model.reykir)}}</td>
+        <td>{{model.reykir | jaNei}}</td>
     </tr>
     <tr>
         <td>Maki?</td>
-        <td>{{model.jaNei(model.maki)}}</td>
+        <td>{{model.maki | jaNei}}</td>
     </tr>
     <tr>
         <td>Börn á framfæri</td>
@@ -28,11 +28,11 @@
     </tr>
     <tr>
         <td>Laun eftir skatt</td>
-        <td><a href="#" id="xlaun" title="Laun eftir skatt">{{model.laun}}</a></td>
+        <td><a href="#" id="xlaun" title="Laun eftir skatt">{{model.laun | kronur}}</a></td>
     </tr>
     <tr>
         <td>Skammtímaskuldir</td>
-        <td>{{model.skammtimaSkuldir}}</td>
+        <td>{{model.skammtimaSkuldir | kronur}}</td>
     </tr>
     <tr>
         <td>Húsnæði</td>
@@ -40,7 +40,7 @@
     </tr>
     <tr>
         <td>{{model.husnaediLabel()}}</td>
-        <td>{{model.husnaediUpphaed()}}</td>
+        <td>{{model.husnaediUpphaed() | kronur}}</td>
     </tr>
 </table>
 
@@ -52,39 +52,39 @@
     </tr>
     <tr>
         <td style="width:260px;">Matur og hreinlætisvörur</td>
-        <td class="right"><a href="#" id="xmatur">{{model.kostnadurTxt(0)}}</a></td>
+        <td class="right"><a href="#" id="xmatur">{{model.kostnadur()[0] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Föt og skór</td>
-        <td class="right"><a href="#" id="xfot">{{model.kostnadurTxt(1)}}</a></td>
+        <td class="right"><a href="#" id="xfot">{{model.kostnadur()[1] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Læknis- og lyfjakostnaður</td>
-        <td class="right"><a href="#" id="xlaeknis">{{model.kostnadurTxt(2)}}</a></td>
+        <td class="right"><a href="#" id="xlaeknis">{{model.kostnadur()[2] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Tómstundir</td>
-        <td class="right"><a href="#" id="xtomstundir">{{model.kostnadurTxt(3)}}</a></td>
+        <td class="right"><a href="#" id="xtomstundir">{{model.kostnadur()[3] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Samskipti</td>
-        <td class="right"><a href="#" id="xsamskipti">{{model.kostnadurTxt(4)}}</a></td>
+        <td class="right"><a href="#" id="xsamskipti">{{model.kostnadur()[4] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Önnur þjónusta</td>
-        <td class="right"><a href="#" id="xþjonusta">{{model.kostnadurTxt(5)}}</a></td>
+        <td class="right"><a href="#" id="xþjonusta">{{model.kostnadur()[5] | kronur}}</a></td>
     </tr>
     <tr>
         <td>Samgöngur</td>
-        <td class="right"><a href="#" id="xsamgongur">{{model.kostnadurTxt(6)}}</a></td>
+        <td class="right"><a href="#" id="xsamgongur">{{model.kostnadur()[6] | kronur}}</a></td>
     </tr> 
     <tr>
         <td>Húsnæði og skammtímaskuldir</td>
-        <td class="right">{{model.afborganirTxt()}}</td>
+        <td class="right">{{model.afborganir() | kronur}}</td>
     </tr>
     <tr>
         <td><span class="bold">Samtals</span></td>
-        <td class="bold right">{{model.heildarKostnTxt()}}</td>
+        <td class="bold right">{{model.heildarKostn() | kronur}}</td>
     </tr>
 </table>
 
@@ -220,21 +220,21 @@
         <td style="width:200px">
             Reiknuð líftrygging:
         </td>
-        <td>{{$parent.kronur(model.liftrygging())}}</td>
+        <td>{{model.liftrygging() | kronur}}</td>
         <td>
             Iðgjald á mánuði er:
         </td>
-        <td class="right">{{$parent.kronur(model.lifIdgjald())}}</td>
+        <td class="right">{{model.lifIdgjald() | kronur}}</td>
     </tr>
     <tr>
         <td style="width:200px">
             Reiknuð sjúkdómatrygging:
         </td>
-        <td>{{$parent.kronur(model.sjukdomatrygging())}}</td>
+        <td>{{model.sjukdomatrygging() | kronur}}</td>
         <td>
             Iðgjald á mánuði er:
         </td>
-        <td class="right">{{$parent.kronur(model.sjukdomaIdgjald())}}</td>
+        <td class="right">{{model.sjukdomaIdgjald() | kronur}}</td>
     </tr>
     <tr>
         <td style="width:200px"></td>
@@ -242,7 +242,7 @@
         <td>
             <span class="bold">Samtals iðgjöld á mánuði:</span>
         </td>
-        <td class="right"><span class="bold">{{$parent.kronur(model.idgjold())}}</span></td>
+        <td class="right"><span class="bold">{{model.idgjold() | kronur}}</span></td>
     </tr>
 </table>
 

@@ -43,11 +43,30 @@ lvApp.controller("defaultCtrl", function ($scope) {
             $scope.tabPanelItems.push({ title: 'New item' });
         } 
     };
+});
 
-    $scope.kronur = function(x) {return kronur(x)};
+lvApp.filter("kronur", function () {
+    return function (input) {
+        return kronur(input);
+    }
+});
 
-    //window.scope = $scope;
+lvApp.filter("aldur", function () {
+    return function (input) {
+        return input + ' ára'
+    }
+});
 
+lvApp.filter("jaNei", function () {
+    return function (input) {
+        return input == 1 ? 'Já' : 'Nei';
+    }
+});
+
+lvApp.filter("kyn", function () {
+    return function (input) {
+        return input == 1 ? 'Karl' : 'Kona';
+    }
 });
 
 function stillaTabPanel($scope) {
