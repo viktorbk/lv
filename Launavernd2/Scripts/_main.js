@@ -1,7 +1,8 @@
 ﻿TAB_PERSONUUPPL = 1;
 TAB_UTREIKNINGUR = 3;
 
-var lvApp = angular.module('lvApp', ['dx', 'ngMaterial']);
+var lvApp = angular.module('lvApp', ['dx', 'ngMaterial', 'ngRoute']);
+
 lvApp.controller("defaultCtrl", function ($scope) {
     
     $scope.data = {
