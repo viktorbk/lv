@@ -5,6 +5,7 @@ var Persona = {
 	maki: 2,
 	fjoldiBarna: 0,
 	laun: 150000,
+	makaLaun: 150000,
 	skammtimaSkuldir: 10000,
 	husnaedi: 2,
 	erLeiga: function() {return this.husnaedi == 1},
@@ -34,7 +35,9 @@ var Persona = {
 		return svar;
 	},
 	tilRadstofunar: function() {
-		var svar = this.laun - this.heildarKostn();
+	    var svar = this.laun - this.heildarKostn();
+	    if (this.maki == 1)
+	        svar += this.makaLaun;
 		return kronur(svar);		
 	},
 	vernd: 50,
@@ -50,9 +53,9 @@ var Persona = {
 		var idg = Liftrygging.Reyklaus[this.aldur];
 		if (this.reykir == 1)
 			idg = Liftrygging.Reykir[this.aldur];
-		var upph = this.liftrygging() / 1000000.0;
-		upph = Math.round(upph * idg);
-		return upph;
+		var fjoldiMilljona = this.liftrygging() / 1000000.0;
+		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
+		return idgjaldPerAr;
 	},
 	sjukdomatrygging: function() {
 		var svar = this.laun * this.sjukdomaVernd / 100.0;
@@ -63,14 +66,21 @@ var Persona = {
 		var idg = Sjukdomatrygging.Reyklaus[this.aldur];
 		if (this.reykir == 1)
 			idg = Sjukdomatrygging.Reykir[this.aldur];
-		var upph = this.sjukdomatrygging() / 1000000.0;
-		upph = Math.round(upph * idg);
-		return upph;
+		var fjoldiMilljona = this.sjukdomatrygging() / 1000000.0;
+		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
+		return idgjaldPerAr;
 	},
 	idgjold: function() {
 		var svar = this.lifIdgjald() + this.sjukdomaIdgjald();
 		return svar;
-	}
+	},
+	tryggingTexti: function () {
+	    return "Ég vil að fjölskylda mín haldi " + this.vernd + "% af núverandi launum mínum í " + this.verndAr + " ár ef ég fell frá.";
+	},
+	sjukdomaTryggingTexti: function () {
+	    return "Ég vil halda " + this.sjukdomaVernd + "% af núverandi launum mínum í " + this.sjukdomaVerndAr + " ár ef ég greinist með illvígan sjúkdóm.";
+	},
+    borgaManadarlega: true
 }
 
 var Valkostir = {

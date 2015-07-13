@@ -23,9 +23,33 @@
                     }
             }"></div>
             </div>
+            <div id="makaLaun-grp" class="grp" ng-show="hefurMaka()">
+                <br />
+                <br />
+                <p id="maka-laun-display">Hver eru mánaðarleg laun maka þíns eftir skatta?</p>
+                <div id="maka-laun" dx-slider="{
+                    min: 0,
+                    max: 1000000,
+                    step: 50000,
+                    bindingOptions: {
+                        value: 'model.makaLaun'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétt laun.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatLaunLabel
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatLaunTooltip
+                    }
+                }"></div>
+            </div>
         </td>
         <td>
-            <div id="skammtimaskuldir-grp">
+            <div id="skammtimaskuldir-grp" class="grp">
                 <p id="skammtimaskuldir-display">Hvað greiðir þú af skammtímaskuldum á mánuði?</p>
                 <div id="skammtimaskuldir" dx-slider="{
                     min: 0,

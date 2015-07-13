@@ -1,7 +1,7 @@
 ﻿TAB_PERSONUUPPL = 1;
 TAB_UTREIKNINGUR = 3;
 
-var lvApp = angular.module('lvApp', ['dx', 'ngMaterial', 'ngRoute']);
+var lvApp = angular.module('lvApp', ['dx', 'ngMaterial']);
 
 lvApp.controller("defaultCtrl", function ($scope) {
     
@@ -70,6 +70,12 @@ lvApp.filter("kyn", function () {
     }
 });
 
+lvApp.filter("kronurPerManud", function () {
+    return function (input) {
+        return kronur(Math.round(input / 12));
+    }
+});
+
 function stillaTabPanel($scope) {
     $scope.docHeight = document.documentElement.clientHeight - 1,
     $scope.tabPanelItems = [
@@ -106,6 +112,9 @@ function stillaTabPanel($scope) {
             formatSkammtimaskuldirTooltip: fmtSkammtimaskuldirTooltip,
             erLeiga: function() {
                 return Persona.husnaedi == 1;
+            },
+            hefurMaka: function () {
+                return Persona.maki == 1;
             }
         },
         {
@@ -117,7 +126,13 @@ function stillaTabPanel($scope) {
             formatProsentLabel: fmtProsentLabel,
             formatProsentTooltip: fmtProsentTooltip,
             formatArLabel: fmtArLabel,
-            formatArTooltip: fmtArTooltip
+            formatArTooltip: fmtArTooltip,
+            hefurMaka: function () {
+                return Persona.maki == 1;
+            },
+            round: function (x) {
+                return Math.round(x);
+            }
         }
     ];
 }

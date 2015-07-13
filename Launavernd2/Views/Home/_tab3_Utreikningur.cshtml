@@ -30,6 +30,10 @@
         <td>Laun eftir skatt</td>
         <td><a href="#" id="xlaun" title="Laun eftir skatt">{{model.laun | kronur}}</a></td>
     </tr>
+    <tr ng-show="hefurMaka()">
+        <td>Laun maka eftir skatt</td>
+        <td><a href="#" id="xmakalaun" title="Laun maka eftir skatt">{{model.makaLaun | kronur}}</a></td>
+    </tr>
     <tr>
         <td>Skammtímaskuldir</td>
         <td>{{model.skammtimaSkuldir | kronur}}</td>
@@ -47,7 +51,7 @@
 <table>
     <tr class="borderUD">
         <td colspan="2">
-            <span class="bold">Kostnaður á mánuði<a href="#" style="float:right" id="endurstillaGildi">Endurstilla gildi</a></span>
+            <span class="bold">Kostnaður á mánuði<a href="#" style="float:right" id="endurstillaGildi"><i>Endurstilla gildi</i></a></span>
         </td>
     </tr>
     <tr>
@@ -82,6 +86,14 @@
         <td>Húsnæði og skammtímaskuldir</td>
         <td class="right">{{model.afborganir() | kronur}}</td>
     </tr>
+    <tr ng-show="hefurMaka()">
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
     <tr>
         <td><span class="bold">Samtals</span></td>
         <td class="bold right">{{model.heildarKostn() | kronur}}</td>
@@ -107,7 +119,7 @@
     </tr>
     <tr>
         <td>
-            <div id="laun-prosenta-grp" class="grp">
+            <div id="laun-prosenta-grp" class="grp" align="center">
                 <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
                     min: 40,
@@ -131,7 +143,7 @@
             </div>
         </td>
         <td>
-            <div id="laun-ar-grp" class="grp">
+            <div id="laun-ar-grp" class="grp" align="center">
                 <p id="laun-ar-display">Í hversu mörg ár viltu tryggja launin?</p>
                 <div dx-slider="{
                     min: 1,
@@ -155,6 +167,13 @@
             </div>
         </td>
     </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <br />
+            <p>{{model.tryggingTexti()}}</p>
+            <br />
+        </td>
+    </tr>
 </table>
 
 <table class="tafla4">
@@ -165,7 +184,7 @@
     </tr>
     <tr>
         <td>
-            <div id="laun-prosenta-grp" class="grp">
+            <div id="laun-prosenta-grp" class="grp" align="center">
                 <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
                     min: 40,
@@ -189,7 +208,7 @@
             </div>
         </td>
         <td>
-            <div id="laun-ar-grp" class="grp">
+            <div id="laun-ar-grp" class="grp" align="center">
                 <p id="laun-ar-display">Í hversu mörg ár viltu tryggja launin?</p>
                 <div dx-slider="{
                     min: 1,
@@ -213,18 +232,39 @@
             </div>
         </td>
     </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <br />
+            <p>{{model.sjukdomaTryggingTexti()}}</p>
+            <br />
+        </td>
+    </tr>
 </table>
 
-<table class="tafla4">
+<table class="tafla-idgjold">
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="right">
+            <i>Greiða mánaðarlega?</i>
+            <div dx-check-box="{
+                bindingOptions: {
+                    value: 'model.borgaManadarlega'
+                }
+            }"></div>
+        </td>
+    </tr>
     <tr>
         <td style="width:200px">
             Reiknuð líftrygging:
         </td>
         <td>{{model.liftrygging() | kronur}}</td>
         <td>
-            Iðgjald á mánuði er:
+            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
         </td>
-        <td class="right">{{model.lifIdgjald() | kronur}}</td>
+        <td class="right" ng-hide="model.borgaManadarlega">{{model.lifIdgjald() |  kronur}}</td>
+        <td class="right" ng-show="model.borgaManadarlega">{{model.lifIdgjald() |  kronurPerManud}}</td>
     </tr>
     <tr>
         <td style="width:200px">
@@ -232,17 +272,19 @@
         </td>
         <td>{{model.sjukdomatrygging() | kronur}}</td>
         <td>
-            Iðgjald á mánuði er:
+            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
         </td>
-        <td class="right">{{model.sjukdomaIdgjald() | kronur}}</td>
+        <td class="right" ng-hide="model.borgaManadarlega">{{model.sjukdomaIdgjald() |  kronur}}</td>
+        <td class="right" ng-show="model.borgaManadarlega">{{model.sjukdomaIdgjald() |  kronurPerManud}}</td>
     </tr>
     <tr>
         <td style="width:200px"></td>
         <td></td>
         <td>
-            <span class="bold">Samtals iðgjöld á mánuði:</span>
+            <span class="bold">Samtals iðgjöld á {{model.borgaManadarlega ? "mánuði" : "ári"}}:</span>
         </td>
-        <td class="right"><span class="bold">{{model.idgjold() | kronur}}</span></td>
+        <td class="right" ng-hide="model.borgaManadarlega">{{model.idgjold() |  kronur}}</td>
+        <td class="right" ng-show="model.borgaManadarlega">{{model.idgjold() |  kronurPerManud}}</td>
     </tr>
 </table>
 

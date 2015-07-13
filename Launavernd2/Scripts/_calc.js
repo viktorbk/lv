@@ -49,6 +49,15 @@ function initEditables() {
             initEditables();
         }
     });
+    $('#xmakalaun').editable({
+        type: 'text',
+        value: Persona.makaLaun,
+        success: function (response, newValue) {
+            Persona.makaLaun = newValue;
+            window.tabPanel.repaint();
+            initEditables();
+        }
+    });
     $('#xmatur').editable({
         type: 'text',
         value: Persona.kostnadur()[0],

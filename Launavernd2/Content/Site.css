@@ -83,3 +83,10 @@ ul li {
 .borderUD {
     border-top: 1px solid silver;border-bottom: 1px solid silver;
 }
+
+.tafla-idgjold {
+    margin-top: 25px;
+    width: 750px;
+    border: 1px solid #DDDDDD;
+    padding: 10px;
+}
