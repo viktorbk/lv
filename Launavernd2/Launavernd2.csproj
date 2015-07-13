@@ -158,6 +158,7 @@
     <Content Include="DX\js\angular-1.3.11-sanitize.min.js" />
     <Content Include="DX\js\angular-1.3.11.min.js" />
     <Content Include="DX\js\angular-material.min.js" />
+    <Content Include="DX\js\angular-route.min.js" />
     <Content Include="DX\js\angular-sanitize.min.js" />
     <Content Include="DX\js\angular.min.js" />
     <Content Include="DX\js\bootstrap3.min.js" />
