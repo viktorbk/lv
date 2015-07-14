@@ -50,7 +50,7 @@
         </td>
         <td>
             <div id="skammtimaskuldir-grp" class="grp">
-                <p id="skammtimaskuldir-display">Hvað greiðir þú af skammtímaskuldum á mánuði?</p>
+                <p id="skammtimaskuldir-display">Hvað greiðir þú af skammtímaskuldum á mánuði?<a id="skammtimaskuldirInfo"><span class="glyphicon glyphicon-info-sign"></span></a></p>
                 <div id="skammtimaskuldir" dx-slider="{
                     min: 0,
                     max: 500000,
@@ -70,6 +70,9 @@
                         format: formatSkammtimaskuldirTooltip
                     }
                  }"></div>
+                <div id="skammtimaskuldirInfoWindow">
+                    <p>Skammtímaskuldir eru til dæmis kreditkortalán, bílalán og yfirdráttur.</p>
+                </div>
             </div>
         </td>
     </tr>
@@ -141,5 +144,15 @@
             
         </td>
         <td></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <br />
+            <div class="next-button" dx-button="{
+                text: 'Næsta skref',
+                onClick: $parent.naestaSida,
+                icon: 'arrowright'
+            }"></div>
+        </td>
     </tr>
 </table>

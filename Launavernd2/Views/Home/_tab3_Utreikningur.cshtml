@@ -106,7 +106,7 @@
             <span class="bold">Til ráðstöfunar á mánuði</span>
         </td>
         <td>
-            <span class="bold">{{model.tilRadstofunar()}}</span>
+            <span class="bold" ng-class="{'red': (model.tilRadstofunar() < 0)}">{{model.tilRadstofunar() | kronur}}</span>
         </td>
     </tr>
 </table>

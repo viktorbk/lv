@@ -1,4 +1,5 @@
 ﻿TAB_PERSONUUPPL = 1;
+TAB_FJARMALAUPPL = 2;
 TAB_UTREIKNINGUR = 3;
 
 var lvApp = angular.module('lvApp', ['dx', 'ngMaterial']);
@@ -29,10 +30,14 @@ lvApp.controller("defaultCtrl", function ($scope) {
             initEditables();
         if (selectedTab == TAB_PERSONUUPPL)
             initInfo1();
+        if (selectedTab == TAB_FJARMALAUPPL)
+            initInfo2();
     }
 
-    $scope.updateFramfaersla = function (e) {
-        initEditables();
+    $scope.naestaSida = function () {
+        var curIndex = $("#tabPanel").dxTabPanel("option", "selectedIndex");
+        var nextIndex = (curIndex + 1) % 5;
+        $("#tabPanel").dxTabPanel("instance").option("selectedIndex", nextIndex);
     }
 
     $scope.tabInit = function(e) {
@@ -78,6 +83,14 @@ lvApp.filter("kronurPerManud", function () {
     }
 });
 
+lvApp.filter("rauttNeikvaett", function () {
+    return function (input) {
+        if (input < 0)
+            return "red";
+        return "";
+    }
+});
+
 function stillaTabPanel($scope) {
     $scope.docHeight = document.documentElement.clientHeight - 1,
     $scope.tabPanelItems = [
@@ -117,6 +130,9 @@ function stillaTabPanel($scope) {
             },
             hefurMaka: function () {
                 return Persona.maki == 1;
+            },
+            radstofunNeikvaed: function () {
+                return Persona.tilRadstofunar() < 0;
             }
         },
         {
@@ -276,5 +292,3 @@ function getTabPanelObject($scope) {
 function getTitle(icon, txt) {
     return '<table><tr><td><i class="fa fa-' + icon + ' lv-icon"></i></td><td style="padding-left:8px;">&nbsp;' + txt + '</td></tr></table>';
 }
-
-

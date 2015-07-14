@@ -6,7 +6,7 @@ var Persona = {
 	fjoldiBarna: 0,
 	laun: 150000,
 	makaLaun: 150000,
-	skammtimaSkuldir: 10000,
+	skammtimaSkuldir: 0,
 	husnaedi: 2,
 	erLeiga: function() {return this.husnaedi == 1},
 	husnaediTxt: function() { return this.erLeiga() ? 'Leiguhúsnæði' : 'Eigin húsnæði';},
@@ -38,7 +38,7 @@ var Persona = {
 	    var svar = this.laun - this.heildarKostn();
 	    if (this.maki == 1)
 	        svar += this.makaLaun;
-		return kronur(svar);		
+		return svar;
 	},
 	vernd: 50,
 	verndAr: 2,

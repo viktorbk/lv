@@ -17,13 +17,14 @@ function onHusnaediChanged(e) {
 function initEditables() {
     $("#endurstillaGildi").click(function () {
         Framfaersla = FramfaerslaOriginal;
+        initEditables();
     });
 
     // eyði út ediables ef til fyrir
     $(".editable").each(function(obj) {$(this).editable('destroy')})
 
     $('#xaldur').editable({
-    type: 'text',
+    type: 'number',
     value: Persona.aldur,
     success: function(response, newValue) {
         Persona.aldur = newValue;
@@ -32,7 +33,7 @@ function initEditables() {
     }
     });   
     $('#xborn').editable({
-        type: 'text',
+        type: 'number',
         value: Persona.fjoldiBarna,
         success: function(response, newValue) {
             Persona.fjoldiBarna = newValue;
@@ -44,7 +45,7 @@ function initEditables() {
         type: 'text',
         value: Persona.laun,
         success: function(response, newValue) {
-            Persona.laun = newValue;
+            Persona.laun = Number(newValue);
             window.tabPanel.repaint();
             initEditables();
         }
@@ -53,7 +54,7 @@ function initEditables() {
         type: 'text',
         value: Persona.makaLaun,
         success: function (response, newValue) {
-            Persona.makaLaun = newValue;
+            Persona.makaLaun = Number(newValue);
             window.tabPanel.repaint();
             initEditables();
         }
@@ -62,7 +63,7 @@ function initEditables() {
         type: 'text',
         value: Persona.kostnadur()[0],
         success: function (response, newValue) {
-            breytaFramfaersluGildi(0, newValue);
+            breytaFramfaersluGildi(0, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -71,7 +72,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(1),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(1, newValue);
+            breytaFramfaersluGildi(1, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -80,7 +81,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(2),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(2, newValue);
+            breytaFramfaersluGildi(2, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -89,7 +90,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(3),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(3, newValue);
+            breytaFramfaersluGildi(3, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -98,7 +99,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(4),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(4, newValue);
+            breytaFramfaersluGildi(4, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -107,7 +108,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(5),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(5, newValue);
+            breytaFramfaersluGildi(5, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -116,7 +117,7 @@ function initEditables() {
         type: 'text',
         value: saekjaFramfaersluGildi(6),
         success: function (response, newValue) {
-            breytaFramfaersluGildi(6, newValue);
+            breytaFramfaersluGildi(6, Number(newValue));
             window.tabPanel.repaint();
             initEditables();
         }
@@ -152,7 +153,6 @@ function saekjaFramfaersluGildi(gildiNr) {
 }
 
 function initInfo1() {
-    debugger;
     var b = $("#bornInfoWindow").dxPopover({
         target: '#bornInfo',
         width: '200',
@@ -163,12 +163,33 @@ function initInfo1() {
                 to: { scale: 1 }
             },
             hide: {
-                type: 'fade',
+                type: 'pop',
                 from: { scale: 1 },
                 to: { scale: 0 }
             }
         },
-        visible: true
+        visible: false
     }).dxPopover("instance");
     $("#bornInfo").unbind().hover(function () { b.show() }, function () { b.hide() });
+}
+
+function initInfo2() {
+    var b = $("#skammtimaskuldirInfoWindow").dxPopover({
+        target: '#skammtimaskuldirInfo',
+        width: '200',
+        animation: {
+            show: {
+                type: 'pop',
+                from: { scale: 0 },
+                to: { scale: 1 }
+            },
+            hide: {
+                type: 'pop',
+                from: { scale: 1 },
+                to: { scale: 0 }
+            }
+        },
+        visible: false
+    }).dxPopover("instance");
+    $("#skammtimaskuldirInfo").unbind().hover(function () { b.show() }, function () { b.hide() });
 }

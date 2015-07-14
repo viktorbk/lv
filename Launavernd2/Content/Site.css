@@ -56,6 +56,7 @@ textarea {
 .grp > p {
     margin-left: 5px;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 ul li {
@@ -100,4 +101,23 @@ ul li {
 
 .glyphicon {
     padding-left: 15px;
+}
+
+.dx-popup-content p {
+    font-size: 13px;
+    text-align: justify;
+}
+
+.next-button {
+    display: block !important;
+    margin: auto !important;
+    width: 250px !important;
+}
+
+.red {
+    color: red !important;
+}
+
+.dx-button-content > .dx-icon {
+    float: right !important;
 }

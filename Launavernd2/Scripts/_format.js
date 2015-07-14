@@ -51,7 +51,7 @@ function fmtLaunTooltip(value) {
 
 function fmtSkammtimaskuldirLabel(value) {
     if (value == 0) {
-        return "Engar skuldir";
+        return "Ekkert";
     }
     else if (value < 10000000) {
         return "~" + numberWithDots(value) + " kr.";

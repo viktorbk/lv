@@ -38,7 +38,9 @@
                 onInitialized: tabInit,
                 onSelectionChanged: tabChanged,
                 onTitleClick: titleClick,
-                height: docHeight
+                height: docHeight,
+                swipeEnabled: true,
+                animationEnabled: true
              }">
         <div data-options="dxTemplate : { name: 'title' } ">
             <table><tr><td><i class="fa fa-{{icon}}" style="font-size: {{iconSize}}; color: {{iconColor}}"></i></td><td style="padding-left:8px;">{{title}}</td></tr></table>
