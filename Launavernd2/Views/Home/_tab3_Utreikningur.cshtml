@@ -283,8 +283,8 @@
         <td>
             <span class="bold">Samtals iðgjöld á {{model.borgaManadarlega ? "mánuði" : "ári"}}:</span>
         </td>
-        <td class="right" ng-hide="model.borgaManadarlega">{{model.idgjold() |  kronur}}</td>
-        <td class="right" ng-show="model.borgaManadarlega">{{model.idgjold() |  kronurPerManud}}</td>
+        <td class="right" ng-hide="model.borgaManadarlega"><b>{{model.idgjold() |  kronur}}</b></td>
+        <td class="right" ng-show="model.borgaManadarlega"><b>{{model.idgjold() |  kronurPerManud}}</b></td>
     </tr>
 </table>
 

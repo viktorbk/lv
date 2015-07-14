@@ -181,6 +181,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\man-1.png" />
+    <Content Include="Images\man-2.png" />
+    <Content Include="Images\man-3.png" />
+    <Content Include="Images\man-4.png" />
+    <Content Include="Images\man-5.png" />
+    <Content Include="Images\woman-1.png" />
+    <Content Include="Images\woman-2.png" />
+    <Content Include="Images\woman-3.png" />
+    <Content Include="Images\woman-4.png" />
+    <Content Include="Images\woman-5.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="DX\css\icons\dxicons.eot" />

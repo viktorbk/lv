@@ -27,6 +27,8 @@ lvApp.controller("defaultCtrl", function ($scope) {
         $(".fa-" + icon).css({'color': 'green'});
         if (selectedTab == TAB_UTREIKNINGUR)
             initEditables();
+        if (selectedTab == TAB_PERSONUUPPL)
+            initInfo1();
     }
 
     $scope.updateFramfaersla = function (e) {

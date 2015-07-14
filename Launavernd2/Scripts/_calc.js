@@ -150,3 +150,25 @@ function saekjaFramfaersluGildi(gildiNr) {
     }
     return gildi;
 }
+
+function initInfo1() {
+    debugger;
+    var b = $("#bornInfoWindow").dxPopover({
+        target: '#bornInfo',
+        width: '200',
+        animation: {
+            show: {
+                type: 'pop',
+                from: { scale: 0 },
+                to: { scale: 1 }
+            },
+            hide: {
+                type: 'fade',
+                from: { scale: 1 },
+                to: { scale: 0 }
+            }
+        },
+        visible: true
+    }).dxPopover("instance");
+    $("#bornInfo").unbind().hover(function () { b.show() }, function () { b.hide() });
+}

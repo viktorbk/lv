@@ -80,7 +80,18 @@ var Persona = {
 	sjukdomaTryggingTexti: function () {
 	    return "Ég vil halda " + this.sjukdomaVernd + "% af núverandi launum mínum í " + this.sjukdomaVerndAr + " ár ef ég greinist með illvígan sjúkdóm.";
 	},
-    borgaManadarlega: true
+	borgaManadarlega: true,
+	personImg: function () {
+	    var mynd = "/Images/";
+	    if (this.kyn == 1)
+	        mynd += "man-";
+	    else
+	        mynd += "woman-"
+	    var aldur = Math.round(this.aldur / 15);
+	    mynd += aldur;
+	    mynd += ".png";
+	    return mynd;
+	}
 }
 
 var Valkostir = {
