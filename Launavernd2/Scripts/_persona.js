@@ -30,7 +30,7 @@ var Persona = {
 		return svar;
 	},
 	heildarKostn: function() {
-		var svar = this.kostnadur()[7] + this.skammtimaSkuldir;
+		var svar = this.kostnadur()[7];
 		svar += this.afborganir();
 		return svar;
 	},
