@@ -170,7 +170,7 @@ function initInfo1() {
         },
         visible: false
     }).dxPopover("instance");
-    $("#bornInfo").unbind().hover(function () { b.show() }, function () { b.hide() });
+    $("#bornInfo").unbind().hover(function () { b.show(); }, function () { b.hide(); });
 }
 
 function initInfo2() {

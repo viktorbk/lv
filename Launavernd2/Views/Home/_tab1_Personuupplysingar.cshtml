@@ -72,9 +72,15 @@
 	</tr>
 	<tr>
 		<td>
-			<div id="fjoldi-barna-grp" class="grp">
-                <p id="fjoldi-barna-display">Hversu mörg börn eru á þinni framfærslu?<a id="bornInfo"><span class="glyphicon glyphicon-info-sign"></span></a></p>
-				<div dx-slider="{
+		    <div id="fjoldi-barna-grp" class="grp">
+		        <table>
+		            <tr>
+		                <td>Hversu mörg börn eru á þinni framfærslu?</td>
+                        <td><a id="bornInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
+		            </tr>
+		        </table>
+
+		        <div dx-slider="{
 				    min: 0,
 				    max: 10,
 				    step: 1,
@@ -93,10 +99,10 @@
 					    format: formatBornTooltip
 				    }
 			    }"></div>
-                <div id="bornInfoWindow">
-                    <p>Hversu mörg börn ertu að borga fyrir </p>
-                </div>
-			</div>
+		        <div id="bornInfoWindow">
+		            <p>Hversu mörg börn ertu að borga fyrir </p>
+		        </div>
+		    </div>
 		</td>
 	</tr>
     <tr>
