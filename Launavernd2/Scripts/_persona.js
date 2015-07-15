@@ -91,6 +91,23 @@ var Persona = {
 	    mynd += aldur;
 	    mynd += ".png";
 	    return mynd;
+	},
+	houseImg: function () {
+	    var mynd = "/Images/";
+	    var kostnadur = 0;
+	    if (this.husnaedi == 1) {
+	        mynd += "leigu-";
+	        kostnadur = this.leiga;
+	    }
+	    else {
+	        mynd += "eigin-"
+	        kostnadur = this.husnaedisLan;
+	    }
+	    kostnadur = Math.min(200000, kostnadur + 1);
+	    var myndNr = Math.ceil((kostnadur) / 40000);
+	    mynd += myndNr;
+	    mynd += ".png";
+	    return mynd;
 	}
 }
 
