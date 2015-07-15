@@ -126,7 +126,33 @@ ul li {
     font-size: 20px;
 }
 
-.img-div {
-    border-radius: 30px;
-    border: 3px solid silver;
+.display-reykir {
+    position: absolute;
+    top: 250px;
+}
+
+.display-born {
+    width: 100px;
+    background-color: white;
+    height: 60px;
+    position: absolute;
+    bottom: 100px;
+    display: table;
+    border: 2px solid silver;
+}
+
+.display-born > p {
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    left: 60px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.display-born > img {
+    position: absolute;                                                                                                      
+    height: 90%;
+    vertical-align: middle;
+    display: table-cell;
 }

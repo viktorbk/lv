@@ -108,6 +108,14 @@ var Persona = {
 	    mynd += myndNr;
 	    mynd += ".png";
 	    return mynd;
+	},
+	reykirImg: function () {
+	    var mynd = "/Images/";
+	    if (this.reykir == 1)
+	        mynd += "smoking.png";
+	    else
+	        mynd += "nosmoking.png";
+	    return mynd;
 	}
 }
 

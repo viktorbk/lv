@@ -109,7 +109,10 @@ function stillaTabPanel($scope) {
             valkostir: Valkostir,
             formatAldur: fmtAldur,
             formatBornLabel: fmtBornLabel,
-            formatBornTooltip: fmtBornTooltip
+            formatBornTooltip: fmtBornTooltip,
+            aBarn: function () {
+                return Persona.fjoldiBarna > 0;
+            }
         },
         {
             icon: "money",

@@ -15,7 +15,14 @@
 		</td>
         <td rowspan="3">
             <div class="img-div">
+                <div class="display-reykir">
+                    <img ng-src="{{model.reykirImg()}}">
+                </div>
                 <img ng-src="{{model.personImg()}}">
+                <div ng-show="aBarn()" class="display-born">
+                    <img id="baby-picture" ng-src="/Images/baby.png" />
+                    <p>x {{model.fjoldiBarna}}</p>
+                </div>
             </div>
         </td>
 		<td>
