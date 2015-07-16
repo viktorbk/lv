@@ -112,6 +112,9 @@ function stillaTabPanel($scope) {
             formatBornTooltip: fmtBornTooltip,
             aBarn: function () {
                 return Persona.fjoldiBarna > 0;
+            },
+            hefurMaka: function () {
+                return Persona.maki == 1;
             }
         },
         {

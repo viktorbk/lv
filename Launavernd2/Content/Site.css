@@ -156,3 +156,17 @@ ul li {
     vertical-align: middle;
     display: table-cell;
 }
+
+.background-maki {
+    position: absolute;                                                                                                      
+    height: 120px;
+    display: table-cell;
+    z-index: 5;
+    left:520px;
+    top:400px;
+}
+
+.persona-img {
+    position:relative;
+    z-index: 4;
+}
