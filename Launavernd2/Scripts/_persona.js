@@ -86,7 +86,7 @@ var Persona = {
 	    if (this.kyn == 1)
 	        mynd += "man-";
 	    else
-	        mynd += "woman-"
+	        mynd += "woman-";
 	    var aldur = Math.round(this.aldur / 15);
 	    mynd += aldur;
 	    mynd += ".png";
@@ -100,7 +100,7 @@ var Persona = {
 	        kostnadur = this.leiga;
 	    }
 	    else {
-	        mynd += "eigin-"
+	        mynd += "eigin-";
 	        kostnadur = this.husnaedisLan;
 	    }
 	    kostnadur = Math.min(200000, kostnadur + 1);
@@ -114,7 +114,7 @@ var Persona = {
 	    if (this.reykir == 1)
 	        mynd += "smoking.png";
 	    else
-	        mynd += "nosmoking.png";
+	        mynd += "empty.png";
 	    return mynd;
 	}
 }

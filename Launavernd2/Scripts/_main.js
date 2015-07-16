@@ -61,7 +61,7 @@ lvApp.filter("kronur", function () {
 
 lvApp.filter("aldur", function () {
     return function (input) {
-        return input + ' ára'
+        return input + ' ára';
     }
 });
 
