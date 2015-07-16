@@ -91,7 +91,6 @@
                         <td><a id="bornInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
 		            </tr>
 		        </table>
-
 		        <div dx-slider="{
 				    min: 0,
 				    max: 10,
@@ -114,6 +113,16 @@
 		        <div id="bornInfoWindow">
 		            <p>Hversu mörg börn ertu að borga fyrir </p>
 		        </div>
+                <div>
+                    <ul class="baby-list">
+                        <li ng-repeat="i in range(model.fjoldiBarna) track by $index">
+                            <img class="baby-picture" src="~/Images/baby.png"/>
+                        </li>
+                        <li ng-show="model.fjoldiBarna > 5">
+                            <p class="plus-sign">+</p>
+                        </li>
+                    </ul>
+                </div>
 		    </div>
 		</td>
 	</tr>

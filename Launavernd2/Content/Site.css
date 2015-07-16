@@ -59,8 +59,8 @@ textarea {
     font-weight: 500;
 }
 
-ul li {
-    list-style: square;
+.listi > li {
+    list-style-type: square;
     display: list-item;
     margin-left: 2em;
 }
@@ -175,4 +175,30 @@ ul li {
 .display-reykir {
     position: absolute;
     z-index: 5;
+}
+
+.baby-picture {
+    height: 50px;
+}
+
+.baby-list{
+    list-style-type: none !important;
+    text-align: center;
+    width:250px;    
+    height:50px;
+    margin-top: 15px;
+}
+
+.baby-list li {
+    float: left;
+    vertical-align: middle;
+}
+
+.baby-list li img {
+    display: block;
+}
+
+.plus-sign {
+    font-size:40px;
+    font-weight: 600;
 }

@@ -115,6 +115,9 @@ function stillaTabPanel($scope) {
             },
             hefurMaka: function () {
                 return Persona.maki == 1;
+            },
+            range: function (x) {
+                return new Array(Math.min(x, 5));
             }
         },
         {
