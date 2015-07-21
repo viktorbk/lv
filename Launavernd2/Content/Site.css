@@ -100,12 +100,12 @@ textarea {
 }
 
 .glyphicon {
-    padding-left: 15px;
+    
 }
 
 .dx-popup-content p {
-    font-size: 13px;
-    text-align: justify;
+    font-size: 14px;
+    text-align: center;
 }
 
 .next-button {
@@ -123,6 +123,15 @@ textarea {
 }
 
 .info {
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.info-utreikningur {
+    padding-left: 10px;
+}
+
+.info-big {
     font-size: 20px;
 }
 

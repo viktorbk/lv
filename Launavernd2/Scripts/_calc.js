@@ -24,20 +24,18 @@ function initEditables() {
     $(".editable").each(function(obj) {$(this).editable('destroy')})
 
     $('#xaldur').editable({
-    type: 'number',
+    type: 'text',
     value: Persona.aldur,
     success: function(response, newValue) {
-        Persona.aldur = newValue;
-        window.tabPanel.repaint();
+        Persona.aldur = Number(newValue);
         initEditables();
     }
     });   
     $('#xborn').editable({
-        type: 'number',
+        type: 'text',
         value: Persona.fjoldiBarna,
         success: function(response, newValue) {
-            Persona.fjoldiBarna = newValue;
-            window.tabPanel.repaint();
+            Persona.fjoldiBarna = Number(newValue);
             initEditables();
         }
     });  
@@ -46,7 +44,6 @@ function initEditables() {
         value: Persona.laun,
         success: function(response, newValue) {
             Persona.laun = Number(newValue);
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -55,7 +52,6 @@ function initEditables() {
         value: Persona.makaLaun,
         success: function (response, newValue) {
             Persona.makaLaun = Number(newValue);
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -64,7 +60,6 @@ function initEditables() {
         value: Persona.kostnadur()[0],
         success: function (response, newValue) {
             breytaFramfaersluGildi(0, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -73,7 +68,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(1),
         success: function (response, newValue) {
             breytaFramfaersluGildi(1, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -82,7 +76,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(2),
         success: function (response, newValue) {
             breytaFramfaersluGildi(2, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -91,7 +84,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(3),
         success: function (response, newValue) {
             breytaFramfaersluGildi(3, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -100,7 +92,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(4),
         success: function (response, newValue) {
             breytaFramfaersluGildi(4, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -109,7 +100,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(5),
         success: function (response, newValue) {
             breytaFramfaersluGildi(5, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -118,7 +108,6 @@ function initEditables() {
         value: saekjaFramfaersluGildi(6),
         success: function (response, newValue) {
             breytaFramfaersluGildi(6, Number(newValue));
-            window.tabPanel.repaint();
             initEditables();
         }
     });
@@ -153,30 +142,25 @@ function saekjaFramfaersluGildi(gildiNr) {
 }
 
 function initInfo1() {
-    var b = $("#bornInfoWindow").dxPopover({
-        target: '#bornInfo',
-        width: '200',
-        animation: {
-            show: {
-                type: 'pop',
-                from: { scale: 0 },
-                to: { scale: 1 }
-            },
-            hide: {
-                type: 'pop',
-                from: { scale: 1 },
-                to: { scale: 0 }
-            }
-        },
-        visible: false
-    }).dxPopover("instance");
-    $("#bornInfo").unbind().hover(function () { b.show(); }, function () { b.hide(); });
+    var gluggar = ["born"];
+    gluggar.forEach(createPopover);
 }
 
 function initInfo2() {
-    var b = $("#skammtimaskuldirInfoWindow").dxPopover({
-        target: '#skammtimaskuldirInfo',
-        width: '200',
+    var gluggar = ["skammtimaskuldir", "laun"];
+    gluggar.forEach(createPopover);}
+
+function initInfo3() {
+    var gluggar = ["forsendur", "framfaersla", "liftrygginga", "sjukdoma"];
+    gluggar.forEach(createPopover);
+}
+
+function createPopover(element, index, array) {
+    var gluggi = "#" + element + "InfoWindow";
+    var icon = '#' + element + 'Info';
+    var a = $(gluggi).dxPopover({
+        target: icon,
+        width: '300',
         animation: {
             show: {
                 type: 'pop',
@@ -191,5 +175,5 @@ function initInfo2() {
         },
         visible: false
     }).dxPopover("instance");
-    $("#skammtimaskuldirInfo").unbind().hover(function () { b.show() }, function () { b.hide() });
+    $(icon).unbind().hover(function () { a.show() }, function () { a.hide() });
 }

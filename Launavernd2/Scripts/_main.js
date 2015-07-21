@@ -26,8 +26,10 @@ lvApp.controller("defaultCtrl", function ($scope) {
         //var icnBkgnd = $(".fa-" + icon).parent().parent().parent().parent().parent().parent();
         //icnBkgnd.css({'color': 'white', 'background-color': 'green'});
         $(".fa-" + icon).css({'color': 'green'});
-        if (selectedTab == TAB_UTREIKNINGUR)
+        if (selectedTab == TAB_UTREIKNINGUR) {
             initEditables();
+            initInfo3();
+        }
         if (selectedTab == TAB_PERSONUUPPL)
             initInfo1();
         if (selectedTab == TAB_FJARMALAUPPL)
@@ -83,13 +85,30 @@ lvApp.filter("kronurPerManud", function () {
     }
 });
 
-lvApp.filter("rauttNeikvaett", function () {
-    return function (input) {
-        if (input < 0)
-            return "red";
-        return "";
-    }
-});
+//lvApp.filter("rauttNeikvaett", function () {
+//    return function (input) {
+//        if (input < 0)
+//            return "red";
+//        return "";
+//    }
+//});
+
+//lvApp.filter("hjonEinstaklingur", function () {
+//    return function (input) {
+//        if (input < 1)
+//            return "hjón";
+//        return "einstakling";
+//    }
+//});
+
+//lvApp.filter("born", function () {
+//    return function (input) {
+//        if (input == 0)
+//            return "engin börn";
+//        input = Math.min(input, 5);
+//        return input + " börn";
+//    }
+//});
 
 function stillaTabPanel($scope) {
     $scope.docHeight = document.documentElement.clientHeight - 1,

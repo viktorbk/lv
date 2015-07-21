@@ -2,7 +2,13 @@
     <tr>
         <td>
             <div id="laun-grp" class="grp">
-                <p id="laun-display">Hver eru mánaðarleg laun þín eftir skatta?</p>
+                <table>
+                    <tr>
+                        <td>Hver eru mánaðarleg laun þín eftir skatta?</td>
+                        <td><a id="launInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
+                    </tr>
+                </table>
+
                 <div id="laun" dx-slider="{
                     min: 0,
                     max: 1000000,
@@ -22,6 +28,9 @@
                         format: formatLaunTooltip
                     }
             }"></div>
+            <div id="launInfoWindow">
+                <p>Meðal tekjur þínar eftir skatta og öll gjöld í hverjum mánuði.</p>
+            </div>
             </div>
             <div id="makaLaun-grp" class="grp" ng-show="hefurMaka()">
                 <br />

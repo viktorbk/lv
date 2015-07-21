@@ -3,6 +3,7 @@
     <tr class="borderUD">
         <td colspan="2">
             <span class="bold">Forsendur</span>
+            <a id="forsendurInfo"><span class="info-utreikningur glyphicon glyphicon-info-sign"></span></a>
         </td>
     </tr>
     <tr>
@@ -51,12 +52,23 @@
 <table>
     <tr class="borderUD">
         <td colspan="2">
-            <span class="bold">Kostnaður á mánuði<a href="#" style="float:right" id="endurstillaGildi"><i>Endurstilla gildi</i></a></span>
+            <span class="bold">
+                Kostnaður á mánuði
+                <a id="framfaerslaInfo">
+                    <span class="info-utreikningur glyphicon glyphicon-info-sign"></span>
+                </a>
+                <a href="#" style="float:right" id="endurstillaGildi">
+                    <i>
+                        Endurstilla gildi
+                    </i>
+                </a>
+            </span>
         </td>
     </tr>
     <tr>
         <td style="width:260px;">Matur og hreinlætisvörur</td>
         <td class="right"><a href="#" id="xmatur">{{model.kostnadur()[0] | kronur}}</a></td>
+
     </tr>
     <tr>
         <td>Föt og skór</td>
@@ -114,7 +126,12 @@
 <table class="tafla4">
     <tr>
         <td colspan="2" align="center">
-            <p class="bold">Forsendur Líftryggingar</p>
+            <p class="bold">
+                Forsendur Líftryggingar
+                <a id="liftryggingaInfo" style="float:right">
+                    <span class="info-big glyphicon glyphicon-info-sign"></span>
+                </a>
+            </p>
         </td>
     </tr>
     <tr>
@@ -179,7 +196,12 @@
 <table class="tafla4">
     <tr>
         <td colspan="2" align="center">
-            <p class="bold">Forsendur Sjúkdómatryggingar</p>
+            <p class="bold">
+                Forsendur Sjúkdómatryggingar
+                <a id="sjukdomaInfo" style="float:right">
+                    <span class="info-big glyphicon glyphicon-info-sign"></span>
+                </a>
+            </p>
         </td>
     </tr>
     <tr>
@@ -299,4 +321,20 @@
         <td></td>
     </tr>
 </table>
+
+<div id="forsendurInfoWindow">
+    <p>Þessar forsendur eru þær upplýsingar sem við höfum aflað af fyrri síðum reiknivélarinnar. Hægt er að fara til baka og breyta þeim með því að fara milli flipa hér að ofan.</p>
+</div>
+
+<div id="framfaerslaInfoWindow">
+    <p>Þessar upplýsingar eru fengnar frá Umboðsmanni Skuldara. Framfærsluviðmið eru miðuð við gefnar forsendur. Hægt er að breyta gildunum til að fá betri hugmynd um ráðstöfunartekjur.</p>
+</div>
+
+<div id="sjukdomaInfoWindow">
+    <p>Jónas jónas</p>
+</div>
+
+<div id="liftryggingaInfoWindow">
+    <p>Palli palli</p>
+</div>
 
