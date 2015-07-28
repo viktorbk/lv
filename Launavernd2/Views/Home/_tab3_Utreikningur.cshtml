@@ -13,7 +13,6 @@
     <tr>
         <td>Aldur</td>
         <td><a href="#" id="xaldur" title="Aldur">{{model.aldur | aldur}}</a></td>
-
     </tr>
     <tr>
         <td>Reykir?</td>
@@ -36,7 +35,7 @@
         <td><a href="#" id="xmakalaun" title="Laun maka eftir skatt">{{model.makaLaun | kronur}}</a></td>
     </tr>
     <tr>
-        <td>Skammtímaskuldir</td>
+        <td>Skammtímaskuldir</td> 
         <td>{{model.skammtimaSkuldir | kronur}}</td>
     </tr>
     <tr>
@@ -49,7 +48,7 @@
     </tr>
 </table>
 
-<table>
+<table style="width: 340px;">
     <tr class="borderUD">
         <td colspan="2">
             <span class="bold">
@@ -93,10 +92,6 @@
     <tr>
         <td>Samgöngur</td>
         <td class="right"><a href="#" id="xsamgongur">{{model.kostnadur()[6] | kronur}}</a></td>
-    </tr> 
-    <tr>
-        <td>Húsnæði og skammtímaskuldir</td>
-        <td class="right">{{model.afborganir() | kronur}}</td>
     </tr>
     <tr ng-show="hefurMaka()">
         <td>
@@ -107,30 +102,37 @@
         </td>
     </tr>
     <tr>
-        <td><span class="bold">Samtals</span></td>
-        <td class="bold right">{{model.heildarKostn() | kronur}}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><span class="bold">Almennur kostnaður á mánuði</span></td>
+        <td class="right"><span class="bold">{{(model.heildarKostn() - model.afborganir())| kronur}}</span></td>
     </tr>
 </table>
 
 <table class="tblRadstofun">
     <tr>
-        <td style="width:250px">
+        <td style="width:260px">
             <span class="bold">Til ráðstöfunar á mánuði</span>
         </td>
-        <td>
+        <td style ="width:150px">
             <span class="bold" ng-class="{'red': (model.tilRadstofunar() < 0)}">{{model.tilRadstofunar() | kronur}}</span>
+        </td>
+        <td style="width:260px">
+            <span class="bold">Heildarútgjöld á mánuði</span>
+        </td>
+        <td>
+            <p class="bold right">{{model.heildarKostn() | kronur}}</p>
         </td>
     </tr>
 </table>
 
-<table class="tafla4">
+<table class="tafla-utreikningur">
     <tr>
         <td colspan="2" align="center">
-            <p class="bold">
+            <p class="bold title-p">
                 Forsendur Líftryggingar
-                <a id="liftryggingaInfo" style="float:right">
-                    <span class="info-big glyphicon glyphicon-info-sign"></span>
-                </a>
             </p>
         </td>
     </tr>
@@ -187,20 +189,17 @@
     <tr>
         <td colspan="2" align="center">
             <br />
-            <p>{{model.tryggingTexti()}}</p>
+            <p><span class="statement-p">{{model.tryggingTexti()}}</span></p>
             <br />
         </td>
     </tr>
 </table>
 
-<table class="tafla4">
+<table class="tafla-utreikningur">
     <tr>
         <td colspan="2" align="center">
-            <p class="bold">
+            <p class="bold title-p">
                 Forsendur Sjúkdómatryggingar
-                <a id="sjukdomaInfo" style="float:right">
-                    <span class="info-big glyphicon glyphicon-info-sign"></span>
-                </a>
             </p>
         </td>
     </tr>
@@ -257,17 +256,92 @@
     <tr>
         <td colspan="2" align="center">
             <br />
-            <p>{{model.sjukdomaTryggingTexti()}}</p>
+            <p><span class="statement-p">{{model.sjukdomaTryggingTexti()}}</span></p>
             <br />
         </td>
     </tr>
 </table>
 
-<table class="tafla-idgjold">
+<table class="tafla-utreikningur">
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td colspan="5" align="center">
+            <p class="bold title-p">
+                Niðurstöður
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:200px" class="bold-med">
+            Reiknuð líftrygging:
+        </td>
+        <td class="bold-med right">
+            {{model.liftrygging() | kronur}}
+        </td>
+        <td class ="bold-med">
+            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
+        </td>
+        <td class="bold-med right" ng-hide="model.borgaManadarlega">    
+            {{model.lifIdgjald() |  kronur}}
+        </td>
+        <td class="bold-med right" ng-show="model.borgaManadarlega">    
+            {{model.lifIdgjald() |  kronurPerManud}}
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td style="width:200px">
+            <p class="bold-med">
+                Reiknuð sjúkdómatrygging:
+            </p>
+        </td>
+        <td>
+            <p class="bold-med">
+                {{model.sjukdomatrygging() | kronur}}
+            </p>
+        </td>
+        <td>
+            <p class="bold-med">
+                Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
+            </p>
+        </td>
+        <td class="bold-med right" ng-hide="model.borgaManadarlega">
+            <p class="bold-med">
+                {{model.sjukdomaIdgjald() |  kronur}}
+            </p>
+        </td>
+        <td class="bold-med right" ng-show="model.borgaManadarlega">
+            <p class="bold-med">
+                {{model.sjukdomaIdgjald() |  kronurPerManud}}
+            </p>
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td style="width:200px">
+
+        </td>
+        <td>
+
+        </td>
+        <td class="nidurstada">
+            <span class="bold-big">
+                Samtals iðgjöld á {{model.borgaManadarlega ? "mánuði" : "ári"}}:
+            </span>
+        </td>
+        <td class="right nidurstada" ng-hide="model.borgaManadarlega">
+            <p class="bold-big">
+                {{model.idgjold() |  kronur}}
+            </p>
+        </td>
+        <td class="right nidurstada" ng-show="model.borgaManadarlega">
+            <p class="bold-big">
+                {{model.idgjold() |  kronurPerManud}}
+            </p>
+        </td>
         <td class="right">
             <i>Greiða mánaðarlega?</i>
             <div dx-check-box="{
@@ -276,37 +350,6 @@
                 }
             }"></div>
         </td>
-    </tr>
-    <tr>
-        <td style="width:200px">
-            Reiknuð líftrygging:
-        </td>
-        <td>{{model.liftrygging() | kronur}}</td>
-        <td>
-            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
-        </td>
-        <td class="right" ng-hide="model.borgaManadarlega">{{model.lifIdgjald() |  kronur}}</td>
-        <td class="right" ng-show="model.borgaManadarlega">{{model.lifIdgjald() |  kronurPerManud}}</td>
-    </tr>
-    <tr>
-        <td style="width:200px">
-            Reiknuð sjúkdómatrygging:
-        </td>
-        <td>{{model.sjukdomatrygging() | kronur}}</td>
-        <td>
-            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
-        </td>
-        <td class="right" ng-hide="model.borgaManadarlega">{{model.sjukdomaIdgjald() |  kronur}}</td>
-        <td class="right" ng-show="model.borgaManadarlega">{{model.sjukdomaIdgjald() |  kronurPerManud}}</td>
-    </tr>
-    <tr>
-        <td style="width:200px"></td>
-        <td></td>
-        <td>
-            <span class="bold">Samtals iðgjöld á {{model.borgaManadarlega ? "mánuði" : "ári"}}:</span>
-        </td>
-        <td class="right" ng-hide="model.borgaManadarlega"><b>{{model.idgjold() |  kronur}}</b></td>
-        <td class="right" ng-show="model.borgaManadarlega"><b>{{model.idgjold() |  kronurPerManud}}</b></td>
     </tr>
 </table>
 
@@ -329,12 +372,3 @@
 <div id="framfaerslaInfoWindow">
     <p>Þessar upplýsingar eru fengnar frá Umboðsmanni Skuldara. Framfærsluviðmið eru miðuð við gefnar forsendur. Hægt er að breyta gildunum til að fá betri hugmynd um ráðstöfunartekjur.</p>
 </div>
-
-<div id="sjukdomaInfoWindow">
-    <p>Jónas jónas</p>
-</div>
-
-<div id="liftryggingaInfoWindow">
-    <p>Palli palli</p>
-</div>
-

@@ -151,7 +151,7 @@ function initInfo2() {
     gluggar.forEach(createPopover);}
 
 function initInfo3() {
-    var gluggar = ["forsendur", "framfaersla", "liftrygginga", "sjukdoma"];
+    var gluggar = ["forsendur", "framfaersla"];
     gluggar.forEach(createPopover);
 }
 

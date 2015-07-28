@@ -14,23 +14,26 @@
 			</div>
 		</td>
         <td rowspan="3">
-            <div class="img-div">
+            <div>
                 <div class="display-reykir">
                     <img ng-src="{{model.reykirImg()}}">
                 </div>
                 <div ng-show="hefurMaka()" >
-                    <img class="background-maki" src="~/Images/maki.png">
+                    <img class="background-maki" ng-class="{'flip-it': (model.aldur < 68)}" ng-src="{{model.makiImg()}}">
                 </div>
                 <img class="persona-img" ng-src="{{model.personImg()}}">
-                <div ng-show="aBarn()" class="display-born">
+                @*<div ng-show="aBarn()" class="display-born">
                     <img id="baby-picture" ng-src="/Images/baby.png" />
                     <p>x {{model.fjoldiBarna}}</p>
-                </div>
+                </div>*@
             </div>
         </td>
 		<td>
 			<div id="aldur-grp" class="grp">
-				<p id="aldur-display">Aldur?</p>
+                <p>
+                    Aldur?
+                    <span class="svar">{{model.aldur | aldur}}</span>
+                </p>
 				<div dx-slider="{
 					min: 18,
 					max: 70,
@@ -87,7 +90,12 @@
 		    <div id="fjoldi-barna-grp" class="grp">
 		        <table>
 		            <tr>
-		                <td>Hversu mörg börn eru á þinni framfærslu?</td>
+		                <td>
+                            <p>
+                                Hversu mörg börn eru á þinni framfærslu?
+                                <span class="svar">{{model.fjoldiBarna | born}}</span>
+                            </p>
+                        </td>
                         <td><a id="bornInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
 		            </tr>
 		        </table>
@@ -116,10 +124,7 @@
                 <div>
                     <ul class="baby-list">
                         <li ng-repeat="i in range(model.fjoldiBarna) track by $index">
-                            <img class="baby-picture" src="~/Images/baby.png"/>
-                        </li>
-                        <li ng-show="model.fjoldiBarna > 5">
-                            <p class="plus-sign">+</p>
+                            <img class="baby-picture" ng-src="{{ model.babyImg($index) }}"/>
                         </li>
                     </ul>
                 </div>

@@ -181,6 +181,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\baby-1.png" />
+    <Content Include="Images\baby-2.png" />
+    <Content Include="Images\baby-3.png" />
+    <Content Include="Images\baby-4.png" />
     <Content Include="Images\baby.png" />
     <Content Include="Images\eigin-1.png" />
     <Content Include="Images\eigin-2.png" />
@@ -195,6 +199,11 @@
     <Content Include="Images\man-3.png" />
     <Content Include="Images\man-4.png" />
     <Content Include="Images\man-5.png" />
+    <Content Include="Images\money-1.png" />
+    <Content Include="Images\money-2.png" />
+    <Content Include="Images\money-3.png" />
+    <Content Include="Images\money-4.png" />
+    <Content Include="Images\money-5.png" />
     <Content Include="Images\nosmoking.png" />
     <Content Include="Images\shadow.png" />
     <Content Include="Images\smoking.png" />

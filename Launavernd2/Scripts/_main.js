@@ -85,30 +85,16 @@ lvApp.filter("kronurPerManud", function () {
     }
 });
 
-//lvApp.filter("rauttNeikvaett", function () {
-//    return function (input) {
-//        if (input < 0)
-//            return "red";
-//        return "";
-//    }
-//});
+lvApp.filter("born", function () {
+    return function (input) {
+        if (input == 0)
+            return "Engin";
+        if (input == 1)
+            return "1 barn";
+        return input + " börn";
+    }
+});
 
-//lvApp.filter("hjonEinstaklingur", function () {
-//    return function (input) {
-//        if (input < 1)
-//            return "hjón";
-//        return "einstakling";
-//    }
-//});
-
-//lvApp.filter("born", function () {
-//    return function (input) {
-//        if (input == 0)
-//            return "engin börn";
-//        input = Math.min(input, 5);
-//        return input + " börn";
-//    }
-//});
 
 function stillaTabPanel($scope) {
     $scope.docHeight = document.documentElement.clientHeight - 1,
@@ -184,7 +170,6 @@ function stillaTabPanel($scope) {
 }
 
 angular.element(document).ready(function () {
-    //debugger;
     angular.bootstrap(document, ['lvApp']);
     $.fn.editable.defaults.mode = 'popup';
 });

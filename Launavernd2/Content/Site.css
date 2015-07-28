@@ -85,26 +85,27 @@ textarea {
     border-top: 1px solid silver;border-bottom: 1px solid silver;
 }
 
-.tafla-idgjold {
-    margin-top: 25px;
+.tafla-utreikningur {
+    margin-top: 15px;
     width: 750px;
     border: 1px solid #DDDDDD;
     padding: 10px;
 }
 
-.tafla-idgjold td {
+.tafla-utreikningur td {
     padding-left: 10px;
     padding-right: 6px;
     padding-top: 5px;
     padding-bottom: 5px;
+    empty-cells: show;
 }
 
 .glyphicon {
     
 }
 
-.dx-popup-content p {
-    font-size: 14px;
+.dx-popup-content {
+    font-size: 16px;
     text-align: center;
 }
 
@@ -169,11 +170,11 @@ textarea {
 
 .background-maki {
     position: absolute;                                                                                                      
-    height: 120px;
+    height: 300px;
     display: table-cell;
-    z-index: 5;
-    left:520px;
-    top:400px;
+    z-index: 3;
+    left: 500px;
+    top:220px;
 }
 
 .persona-img {
@@ -187,14 +188,13 @@ textarea {
 }
 
 .baby-picture {
-    height: 50px;
+    height: 100px;
 }
 
 .baby-list{
     list-style-type: none !important;
-    text-align: center;
-    width:250px;    
-    height:50px;
+    text-align: center; 
+    height:100px;
     margin-top: 15px;
 }
 
@@ -210,4 +210,59 @@ textarea {
 .plus-sign {
     font-size:40px;
     font-weight: 600;
+}
+
+.svar {
+    font-size: 12.5px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+.statement-p {
+    font-size: 16px;
+    font-style: oblique;
+    padding: 8px 8px 8px 8px;
+    border: solid 1px #060505;
+    background-color: #ECEEEF;
+    border-radius: 10px;
+}
+
+.title-p {
+    font-size: 16px;
+    font-weight:600;
+    border-bottom: solid 1px #dddddd;
+    padding: 5px 5px;
+}
+
+.bold-med {
+    font-size: 14px;
+    font-weight:600;
+}
+
+.bold-big {
+    font-size: 15px;
+    font-weight:600;
+}
+
+.flip-it {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: "FlipH";
+    filter: FlipH;
+}
+
+.img-div {
+    width:225px;
+}
+
+.img-div img {
+    width:100%;
+}
+
+.nidurstada {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }

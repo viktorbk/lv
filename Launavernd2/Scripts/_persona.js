@@ -1,6 +1,6 @@
 var Persona = {
 	kyn: 1,
-	aldur: 20,
+	aldur: 25,
 	reykir: 2,
 	maki: 2,
 	fjoldiBarna: 0,
@@ -40,7 +40,7 @@ var Persona = {
 	        svar += this.makaLaun;
 		return svar;
 	},
-	vernd: 50,
+	vernd: 50,  
 	verndAr: 2,
 	sjukdomaVernd: 80,
     sjukdomaVerndAr: 2,
@@ -50,9 +50,9 @@ var Persona = {
 		return svar;
 	},
 	lifIdgjald: function() {
-		var idg = Liftrygging.Reyklaus[this.aldur];
+	    var idg = Liftrygging.Reyklaus[this.aldur - 19];
 		if (this.reykir == 1)
-			idg = Liftrygging.Reykir[this.aldur];
+		    idg = Liftrygging.Reykir[this.aldur - 19];
 		var fjoldiMilljona = this.liftrygging() / 1000000.0;
 		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
 		return idgjaldPerAr;
@@ -63,9 +63,9 @@ var Persona = {
 		return svar;
 	},
 	sjukdomaIdgjald: function() {
-		var idg = Sjukdomatrygging.Reyklaus[this.aldur];
+		var idg = Sjukdomatrygging.Reyklaus[this.aldur - 19];
 		if (this.reykir == 1)
-			idg = Sjukdomatrygging.Reykir[this.aldur];
+		    idg = Sjukdomatrygging.Reykir[this.aldur - 19];
 		var fjoldiMilljona = this.sjukdomatrygging() / 1000000.0;
 		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
 		return idgjaldPerAr;
@@ -84,6 +84,17 @@ var Persona = {
 	personImg: function () {
 	    var mynd = "/Images/";
 	    if (this.kyn == 1)
+	        mynd += "man-";
+	    else
+	        mynd += "woman-";
+	    var aldur = Math.round(this.aldur / 15);
+	    mynd += aldur;
+	    mynd += ".png";
+	    return mynd;
+	},
+	makiImg: function () {
+	    var mynd = "/Images/";
+	    if (this.kyn != 1)
 	        mynd += "man-";
 	    else
 	        mynd += "woman-";
@@ -116,6 +127,19 @@ var Persona = {
 	    else
 	        mynd += "empty.png";
 	    return mynd;
+	},
+	startBabyImage: Math.floor(Math.random() * 3 + 1),
+	babyImg: function (nr) {
+	    var mynd = "/Images/baby-";
+	    return mynd + (((this.startBabyImage + nr) % 4) + 1) + ".png" ;
+	},
+	peningaImg: function () {
+	    var mynd = "/Images/money-";
+	    var radstofun = this.laun;
+	    if (this.maki == 1)
+	        radstofun += this.makaLaun;
+	    radstofun = Math.min(999999, radstofun);
+	    return mynd + (Math.floor(radstofun / 200000) + 1) + ".png";
 	}
 }
 

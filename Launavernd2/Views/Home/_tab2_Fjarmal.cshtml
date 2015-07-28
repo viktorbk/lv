@@ -4,7 +4,12 @@
             <div id="laun-grp" class="grp">
                 <table>
                     <tr>
-                        <td>Hver eru mánaðarleg laun þín eftir skatta?</td>
+                        <td>
+                            <p>
+                                Hver eru mánaðarleg laun þín eftir skatta? 
+                                <span class="svar">{{model.laun | kronur}}</span>
+                            </p>
+                        </td>
                         <td><a id="launInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
                     </tr>
                 </table>
@@ -35,7 +40,11 @@
             <div id="makaLaun-grp" class="grp" ng-show="hefurMaka()">
                 <br />
                 <br />
-                <p id="maka-laun-display">Hver eru mánaðarleg laun maka þíns eftir skatta?</p>
+                <p>
+                    Hver eru mánaðarleg laun maka þíns eftir skatta?
+                    <span class="svar">{{model.makaLaun | kronur}}</span>
+                </p>
+                <p id="maka-laun-display"></p>
                 <div id="maka-laun" dx-slider="{
                     min: 0,
                     max: 1000000,
@@ -58,15 +67,20 @@
             </div>
         </td>
         <td>
-            <div class="img-div" style=" width:235px;height:250px">
-
+            <div class="img-div">
+                <img ng-src="{{model.peningaImg()}}" />
             </div>
         </td>
         <td>
             <div id="skammtimaskuldir-grp" class="grp">
                 <table>
                     <tr>
-                        <td>Hvað greiðir þú af skammtímaskuldum á mánuði?</td>
+                        <td>
+                            <p>
+                                Hvað greiðir þú af skammtímaskuldum á mánuði?
+                                <span class="svar">{{model.skammtimaSkuldir | kronur}}</span>
+                            </p>
+                        </td>
                         <td><a id="skammtimaskuldirInfo"><span class="info glyphicon glyphicon-info-sign"></span></a></td>
                     </tr>
                 </table>
@@ -119,7 +133,10 @@
         </td>
         <td>
             <div id="husnaedi-kostnadur-grp" class="grp" ng-show="erLeiga()">
-                <p id="husnaedi-kostnadur-display">Hver er leigukostnaður þinn á mánuði?</p>
+                <p>
+                    Hver er leigukostnaður þinn á mánuði?
+                    <span class="svar">{{model.leiga | kronur}}</span>
+                </p>
                 <div dx-slider="{
                     min: 0,
                     max: 300000,
@@ -141,7 +158,11 @@
                 }"></div>
             </div>
             <div id="husnaedislan-grp" class="grp" ng-hide="erLeiga()">
-                <p id="husnaedislan-display">Afborganir og vextir á mánuði?</p>
+                <p>
+                    Afborganir og vextir á mánuði?
+                    <span class="svar">{{model.husnaedisLan | kronur}}</span>
+                </p>
+                <p id="husnaedislan-display"></p>
                 <div dx-slider="{
                     min: 0,
                     max: 500000,
