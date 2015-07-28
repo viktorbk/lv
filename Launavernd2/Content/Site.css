@@ -74,7 +74,12 @@ textarea {
 }
 
 .bold {
-    font-weight: bolder;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.overline {
+    border-bottom: 1px solid grey; 
 }
 
 .right {
@@ -93,15 +98,19 @@ textarea {
 }
 
 .tafla-utreikningur td {
-    padding-left: 10px;
-    padding-right: 6px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 5px 5px 5px;
     empty-cells: show;
 }
 
-.glyphicon {
-    
+.tafla-spurning td {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.content-center > div {
+    margin: auto;
 }
 
 .dx-popup-content {

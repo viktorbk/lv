@@ -43,30 +43,51 @@ var Persona = {
 	vernd: 50,  
 	verndAr: 2,
 	sjukdomaVernd: 80,
-    sjukdomaVerndAr: 2,
+	sjukdomaVerndAr: 2,
+	adrarTryggingar: false,
+	onnurLiftrygging: 0,
+    onnurSjukdomaTrygging: 0,
 	liftrygging: function() {
 		var svar = this.laun * this.vernd / 100.0;
 		svar = svar * this.verndAr * 12;
 		return svar;
 	},
+	liftryggingTotal: function () {
+	    var svar = this.liftrygging()   ;
+	    if (this.adrarTryggingar)
+	        svar -= this.onnurLiftrygging;
+	    return svar;
+	},
 	lifIdgjald: function() {
 	    var idg = Liftrygging.Reyklaus[this.aldur - 19];
 		if (this.reykir == 1)
 		    idg = Liftrygging.Reykir[this.aldur - 19];
-		var fjoldiMilljona = this.liftrygging() / 1000000.0;
+		var heildarUpphaed = this.liftrygging();
+		if (this.adrarTryggingar)
+		    heildarUpphaed = this.liftryggingTotal();
+		var fjoldiMilljona = heildarUpphaed / 1000000.0;
 		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
 		return idgjaldPerAr;
 	},
-	sjukdomatrygging: function() {
+	sjukdomaTrygging: function() {
 		var svar = this.laun * this.sjukdomaVernd / 100.0;
 		svar = svar * this.sjukdomaVerndAr * 12;	
 		return svar;
+	},
+	sjukdomaTryggingTotal: function () {
+	    var svar = this.sjukdomaTrygging();
+	    if (this.adrarTryggingar)
+	        svar -= this.onnurSjukdomaTrygging;
+	    return svar;
 	},
 	sjukdomaIdgjald: function() {
 		var idg = Sjukdomatrygging.Reyklaus[this.aldur - 19];
 		if (this.reykir == 1)
 		    idg = Sjukdomatrygging.Reykir[this.aldur - 19];
-		var fjoldiMilljona = this.sjukdomatrygging() / 1000000.0;
+		var heildarUpphaed = this.sjukdomaTrygging();
+		if (this.adrarTryggingar)
+		    heildarUpphaed = this.sjukdomaTryggingTotal()
+		var fjoldiMilljona = heildarUpphaed / 1000000.0;
 		var idgjaldPerAr = Math.round(fjoldiMilljona * idg);
 		return idgjaldPerAr;
 	},

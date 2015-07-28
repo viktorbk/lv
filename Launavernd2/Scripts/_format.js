@@ -36,6 +36,15 @@ function fmtLaunLabel(value) {
     }
 }
 
+function fmtKronur(value) {
+    if (value == 0) {
+        return "Enga";
+    }
+    else {
+        return kronur(value);
+    }
+}
+
 function fmtLaunTooltip(value) {
     if (value == 0) {
         return "Engin laun";

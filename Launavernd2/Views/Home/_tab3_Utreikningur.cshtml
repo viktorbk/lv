@@ -93,6 +93,10 @@
         <td>Samgöngur</td>
         <td class="right"><a href="#" id="xsamgongur">{{model.kostnadur()[6] | kronur}}</a></td>
     </tr>
+    <tr>
+        <td class="overline"><span class="bold">Almennur kostnaður á mánuði</span></td>
+        <td class="right overline"><span class="bold">{{(model.heildarKostn() - model.afborganir())| kronur}}</span></td>
+    </tr>
     <tr ng-show="hefurMaka()">
         <td>
             &nbsp;
@@ -102,12 +106,10 @@
         </td>
     </tr>
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td><span class="bold">Almennur kostnaður á mánuði</span></td>
-        <td class="right"><span class="bold">{{(model.heildarKostn() - model.afborganir())| kronur}}</span></td>
+        <td>
+            Húsnæðis- og skammtímagjöld
+        </td>
+        <td class="right">{{model.afborganir() | kronur}}</td>
     </tr>
 </table>
 
@@ -139,7 +141,7 @@
     <tr>
         <td>
             <div id="laun-prosenta-grp" class="grp" align="center">
-                <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
+                <p>Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
                     min: 40,
                     max: 100,
@@ -191,6 +193,33 @@
             <br />
             <p><span class="statement-p">{{model.tryggingTexti()}}</span></p>
             <br />
+        </td>
+    </tr>
+    <tr ng-show="model.adrarTryggingar">
+        <td colspan="2" class="text-center content-center grp">
+            <p>
+                Hversu háa líftryggingu ertu nú þegar með annars staðar?
+                <span class="svar">{{model.onnurLiftrygging | kronur}}</span>
+            </p>
+            <div dx-slider="{
+                    min: 0,
+                    step: 100000,
+                    bindingOptions: {
+                        value: 'model.onnurLiftrygging',
+                        max: 'model.liftrygging()'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétt gildi.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatKronur
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatKronur
+                    }
+                }"></div>
         </td>
     </tr>
 </table>
@@ -260,6 +289,34 @@
             <br />
         </td>
     </tr>
+    <tr ng-show="model.adrarTryggingar">
+        <td colspan="2" class="text-center content-center grp">
+            <p>
+                Hversu háa sjúkdómatryggingu ertu nú þegar með annars staðar?
+                <span class="svar">{{model.onnurSjukdomaTrygging | kronur}}</span>
+            </p>
+
+            <div dx-slider="{
+                    min: 0,
+                    step: 100000,
+                    bindingOptions: {
+                        value: 'model.onnurSjukdomaTrygging',
+                        max: 'model.sjukdomaTrygging()'
+                    },
+                    width: 300,
+                    hint: 'Dragðu stikuna á rétt gildi.',
+                    label: {
+                        visible: true,
+                        position: 'bottom',
+                        format: formatKronur
+                    },
+                    tooltip: {
+                        enabled: true,
+                        format: formatKronur
+                    }
+                }"></div>
+        </td>
+    </tr>
 </table>
 
 <table class="tafla-utreikningur">
@@ -271,14 +328,18 @@
         </td>
     </tr>
     <tr>
-        <td style="width:200px" class="bold-med">
+        <td style="width:180px" class="bold-med">
             Reiknuð líftrygging:
         </td>
         <td class="bold-med right">
-            {{model.liftrygging() | kronur}}
+            <p>
+                {{model.liftryggingTotal() | kronur}}
+            </p>
         </td>
         <td class ="bold-med">
-            Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
+            <p>
+                Iðgjald á {{model.borgaManadarlega ? "mánuði" : "ári"}} er:
+            </p>
         </td>
         <td class="bold-med right" ng-hide="model.borgaManadarlega">    
             {{model.lifIdgjald() |  kronur}}
@@ -286,19 +347,32 @@
         <td class="bold-med right" ng-show="model.borgaManadarlega">    
             {{model.lifIdgjald() |  kronurPerManud}}
         </td>
-        <td>
-            &nbsp;
+        <td rowspan="2">
+            <table class="tafla-spurning">
+                <tr>
+                    <td>
+                        <i>Ég er með tryggingar <br /> annars staðar</i>
+                    </td>
+                    <td class="right">
+                        <div dx-check-box="{
+                            bindingOptions: {
+                                value: 'model.adrarTryggingar'
+                            }
+                        }"></div>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
-        <td style="width:200px">
+        <td style="width:180px">
             <p class="bold-med">
                 Reiknuð sjúkdómatrygging:
             </p>
         </td>
         <td>
-            <p class="bold-med">
-                {{model.sjukdomatrygging() | kronur}}
+            <p class="bold-med right">
+                {{model.sjukdomaTryggingTotal() | kronur}}
             </p>
         </td>
         <td>
@@ -315,9 +389,6 @@
             <p class="bold-med">
                 {{model.sjukdomaIdgjald() |  kronurPerManud}}
             </p>
-        </td>
-        <td>
-            &nbsp;
         </td>
     </tr>
     <tr>
@@ -343,12 +414,20 @@
             </p>
         </td>
         <td class="right">
-            <i>Greiða mánaðarlega?</i>
-            <div dx-check-box="{
-                bindingOptions: {
-                    value: 'model.borgaManadarlega'
-                }
-            }"></div>
+            <table class="tafla-spurning">
+                <tr>
+                    <td>
+                        <i>Greiða mánaðarlega?</i>
+                    </td>
+                    <td class="right">
+                        <div dx-check-box="{
+                            bindingOptions: {
+                                value: 'model.borgaManadarlega'
+                            }
+                        }"></div>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

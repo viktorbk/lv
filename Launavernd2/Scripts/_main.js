@@ -157,6 +157,7 @@ function stillaTabPanel($scope) {
             model: Persona,
             formatProsentLabel: fmtProsentLabel,
             formatProsentTooltip: fmtProsentTooltip,
+            formatKronur: fmtKronur,
             formatArLabel: fmtArLabel,
             formatArTooltip: fmtArTooltip,
             hefurMaka: function () {
