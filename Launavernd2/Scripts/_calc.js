@@ -151,8 +151,11 @@ function initInfo2() {
     gluggar.forEach(createPopover);}
 
 function initInfo3() {
-    var gluggar = ["forsendur", "framfaersla"];
+    var gluggar = ["forsendur"];
     gluggar.forEach(createPopover);
+
+    gluggar = ["framfaersla"];
+    gluggar.forEach(createPopover2);
 }
 
 function createPopover(element, index, array) {
@@ -176,4 +179,19 @@ function createPopover(element, index, array) {
         visible: false
     }).dxPopover("instance");
     $(icon).unbind().hover(function () { a.show() }, function () { a.hide() });
+}
+
+function createPopover2(element, index, array) {
+    var gluggi = "#" + element + "InfoWindow";
+    var icon = '#' + element + 'Info';
+    var popoverWithShading = $(gluggi).dxPopover({
+        target: icon,
+        position: "top",
+        width: 300,
+        shading: true,
+        shadingColor: "rgba(0, 0, 0, 0.5)"
+    }).dxPopover("instance");
+
+    $(icon).unbind().hover(function () { popoverWithShading.show(); }, null).click(function () { popoverWithShading.hide(); });
+
 }
