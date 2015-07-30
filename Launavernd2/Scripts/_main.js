@@ -4,7 +4,7 @@ TAB_UTREIKNINGUR = 3;
 
 var lvApp = angular.module('lvApp', ['dx', 'ngMaterial']);
 
-lvApp.controller("defaultCtrl", function ($scope) {
+lvApp.controller("defaultCtrl", ["$scope", function ($scope) {
     
     $scope.data = {
         group1: 'Banana',
@@ -53,7 +53,7 @@ lvApp.controller("defaultCtrl", function ($scope) {
             $scope.tabPanelItems.push({ title: 'New item' });
         } 
     };
-});
+}]);
 
 lvApp.filter("kronur", function () {
     return function (input) {

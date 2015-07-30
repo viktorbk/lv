@@ -1,0 +1,11 @@
+{
+  "name": "launavernd",
+  "version": "0.9.0",
+  "description": "Launavernd",
+  "main": "/views/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geysir It",
+  "license": "MIT"
+}
