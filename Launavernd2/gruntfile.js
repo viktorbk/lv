@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     separator: '\n\r',
-                    banner: '/*\nConcatinated JS file \n' +
+                    banner: '/*\nConcatenated JS file \n' +
                             'Author: Geysir It \n' +
                             'Created Date: <%= grunt.template.today("yyyy-mm-dd") %>' +
                             '\n */ \n'

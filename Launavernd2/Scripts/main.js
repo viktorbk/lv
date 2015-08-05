@@ -1,7 +1,7 @@
 /*
-Concatinated JS file 
+Concatenated JS file 
 Author: Geysir It 
-Created Date: 2015-08-04
+Created Date: 2015-08-05
  */ 
 function onHusnaediChanged(e) {
     var newText = '';
@@ -21,7 +21,8 @@ function onHusnaediChanged(e) {
 
 function initEditables() {
     $("#endurstillaGildi").click(function () {
-        Framfaersla = FramfaerslaOriginal;
+        Framfaersla.Hjon = JSON.parse(JSON.stringify(FramfaerslaOriginal.Hjon));
+        Framfaersla.Einstaklingur = JSON.parse(JSON.stringify(FramfaerslaOriginal.Einstaklingur));
         initEditables();
     });
 
@@ -405,6 +406,24 @@ lvApp.controller("defaultCtrl", ["$scope", function ($scope) {
         var curIndex = $("#tabPanel").dxTabPanel("option", "selectedIndex");
         var nextIndex = (curIndex + 1) % 5;
         $("#tabPanel").dxTabPanel("instance").option("selectedIndex", nextIndex);
+    }
+
+    $scope.sendaUmsokn = function () {
+        var persona = {};
+        persona.aldur = Persona.aldur;
+        persona.kyn = Persona.kyn == 1 ? "karl" : "kona";
+        persona.maki = Persona.maki == 1 ? true : false;
+        persona.reykir = Persona.reykir == 1 ? true : false;
+        persona.borgaManadarlega = Persona.borgaManadarlega;
+        persona.vernd = Persona.vernd;
+        persona.verndAr = Persona.verndAr;
+        persona.sjukdomaVernd = Persona.sjukdomaVernd;
+        persona.sjukdomaVerndAr = Persona.sjukdomaVerndAr;
+        persona.adrarTryggingar = Persona.adrarTryggingar;
+        persona.onnurLiftrygging = Persona.onnurLiftrygging;
+        persona.onnurSjukdomaTrygging = Persona.onnurSjukdomaTrygging;
+        location.href = JSON.ser;
+        console.log(persona); 
     }
 
     $scope.tabInit = function(e) {

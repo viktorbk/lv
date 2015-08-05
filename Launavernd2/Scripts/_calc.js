@@ -16,7 +16,8 @@ function onHusnaediChanged(e) {
 
 function initEditables() {
     $("#endurstillaGildi").click(function () {
-        Framfaersla = FramfaerslaOriginal;
+        Framfaersla.Hjon = JSON.parse(JSON.stringify(FramfaerslaOriginal.Hjon));
+        Framfaersla.Einstaklingur = JSON.parse(JSON.stringify(FramfaerslaOriginal.Einstaklingur));
         initEditables();
     });
 

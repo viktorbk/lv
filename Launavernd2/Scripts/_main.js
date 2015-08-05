@@ -42,6 +42,24 @@ lvApp.controller("defaultCtrl", ["$scope", function ($scope) {
         $("#tabPanel").dxTabPanel("instance").option("selectedIndex", nextIndex);
     }
 
+    $scope.sendaUmsokn = function () {
+        var persona = {};
+        persona.aldur = Persona.aldur;
+        persona.kyn = Persona.kyn == 1 ? "karl" : "kona";
+        persona.maki = Persona.maki == 1 ? true : false;
+        persona.reykir = Persona.reykir == 1 ? true : false;
+        persona.borgaManadarlega = Persona.borgaManadarlega;
+        persona.vernd = Persona.vernd;
+        persona.verndAr = Persona.verndAr;
+        persona.sjukdomaVernd = Persona.sjukdomaVernd;
+        persona.sjukdomaVerndAr = Persona.sjukdomaVerndAr;
+        persona.adrarTryggingar = Persona.adrarTryggingar;
+        persona.onnurLiftrygging = Persona.onnurLiftrygging;
+        persona.onnurSjukdomaTrygging = Persona.onnurSjukdomaTrygging;
+        location.href = JSON.ser;
+        console.log(persona); 
+    }
+
     $scope.tabInit = function(e) {
         window.tabPanel = $("#tabPanel").dxTabPanel("instance");
     }
