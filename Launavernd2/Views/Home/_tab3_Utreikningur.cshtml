@@ -143,7 +143,7 @@
             <div id="laun-prosenta-grp" class="grp" align="center">
                 <p>Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
-                    min: 40,
+                    min: 0,
                     max: 100,
                     step: 10,
                     bindingOptions: {
@@ -206,7 +206,8 @@
                     step: 100000,
                     bindingOptions: {
                         value: 'model.onnurLiftrygging',
-                        max: 'model.liftrygging()'
+                        max: 'model.liftrygging()',
+                        disabled: '!model.vernd'
                     },
                     width: 300,
                     hint: 'Dragðu stikuna á rétt gildi.',
@@ -237,7 +238,7 @@
             <div id="laun-prosenta-grp" class="grp" align="center">
                 <p id="laun-prosenta-display">Hversu háa prósentu af launum þínum viltu tryggja?</p>
                 <div dx-slider="{
-                    min: 40,
+                    min: 0,
                     max: 100,
                     step: 10,
                     bindingOptions: {
@@ -301,7 +302,8 @@
                     step: 100000,
                     bindingOptions: {
                         value: 'model.onnurSjukdomaTrygging',
-                        max: 'model.sjukdomaTrygging()'
+                        max: 'model.sjukdomaTrygging()',
+                        disabled: '!model.sjukdomaVernd'
                     },
                     width: 300,
                     hint: 'Dragðu stikuna á rétt gildi.',
