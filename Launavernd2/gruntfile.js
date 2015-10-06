@@ -41,11 +41,13 @@ module.exports = function (grunt) {
 });
  
 //S6: The Required Plug-Ins whihc will be loaded for Task
+grunt.loadNpmTasks('grunt-contrib-watch');
+
 grunt.loadNpmTasks('grunt-contrib-concat');
  
 grunt.loadNpmTasks('grunt-contrib-uglify');
 
-grunt.loadNpmTasks('grunt-contrib-watch');
+
  
 //S7: the array of tasks
 grunt.registerTask('default', ['concat', 'uglify']);
