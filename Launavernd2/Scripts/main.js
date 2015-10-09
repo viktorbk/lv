@@ -1,7 +1,7 @@
 /*
 Concatenated JS file 
 Author: Geysir It 
-Created Date: 2015-10-06
+Created Date: 2015-10-09
  */ 
 function onHusnaediChanged(e) {
     var newText = '';
@@ -795,6 +795,7 @@ function getTitle(icon, txt) {
 	},
 	borgaManadarlega: true,
 	personImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.kyn == 1)
 	        mynd += "man-";
@@ -806,6 +807,7 @@ function getTitle(icon, txt) {
 	    return mynd;
 	},
 	makiImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.kyn != 1)
 	        mynd += "man-";
@@ -817,6 +819,7 @@ function getTitle(icon, txt) {
 	    return mynd;
 	},
 	houseImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    var kostnadur = 0;
 	    if (this.husnaedi == 1) {
@@ -834,6 +837,7 @@ function getTitle(icon, txt) {
 	    return mynd;
 	},
 	reykirImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.reykir == 1)
 	        mynd += "smoking.png";
@@ -843,10 +847,12 @@ function getTitle(icon, txt) {
 	},
 	startBabyImage: Math.floor(Math.random() * 3 + 1),
 	babyImg: function (nr) {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/baby-";
 	    return mynd + (((this.startBabyImage + nr) % 4) + 1) + ".png" ;
 	},
 	peningaImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/money-";
 	    var radstofun = this.laun;
 	    if (this.maki == 1)

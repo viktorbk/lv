@@ -103,6 +103,7 @@ var Persona = {
 	},
 	borgaManadarlega: true,
 	personImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.kyn == 1)
 	        mynd += "man-";
@@ -114,6 +115,7 @@ var Persona = {
 	    return mynd;
 	},
 	makiImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.kyn != 1)
 	        mynd += "man-";
@@ -125,6 +127,7 @@ var Persona = {
 	    return mynd;
 	},
 	houseImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    var kostnadur = 0;
 	    if (this.husnaedi == 1) {
@@ -142,6 +145,7 @@ var Persona = {
 	    return mynd;
 	},
 	reykirImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/";
 	    if (this.reykir == 1)
 	        mynd += "smoking.png";
@@ -151,10 +155,12 @@ var Persona = {
 	},
 	startBabyImage: Math.floor(Math.random() * 3 + 1),
 	babyImg: function (nr) {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/baby-";
 	    return mynd + (((this.startBabyImage + nr) % 4) + 1) + ".png" ;
 	},
 	peningaImg: function () {
+	    return "/Images/empty.png";
 	    var mynd = "/Images/money-";
 	    var radstofun = this.laun;
 	    if (this.maki == 1)
